@@ -131,7 +131,7 @@ class Character extends FlxSprite
 
 			case 'gfGlitcher':
 				// GIRLFRIEND CODE
-				tex = Paths.getSparrowAtlas('night/GF_assets-night','hex');
+				tex = Paths.getSparrowAtlas('glitcher/GF_assets-glitcher','hex');
 				frames = tex;
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
