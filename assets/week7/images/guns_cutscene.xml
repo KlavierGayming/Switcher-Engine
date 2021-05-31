@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="guns_funi.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="guns cutscene instance 10000" x="0" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10001" x="600" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10002" x="1200" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10003" x="1800" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10004" x="2400" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10005" x="3000" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10006" x="3600" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10007" x="4200" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10008" x="4800" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10009" x="5400" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10010" x="6000" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10011" x="6600" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10012" x="7200" y="0" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10013" x="0" y="338" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10014" x="600" y="338" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10015" x="1200" y="338" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10016" x="1800" y="338" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10017" x="2400" y="338" width="610" height="338"/>
+	<SubTexture name="guns cutscene instance 10018" x="3010" y="338" width="610" height="338"/>
+	<SubTexture name="guns cutscene instance 10019" x="3620" y="338" width="610" height="338"/>
+	<SubTexture name="guns cutscene instance 10020" x="4230" y="338" width="610" height="338"/>
+	<SubTexture name="guns cutscene instance 10021" x="4840" y="338" width="610" height="338"/>
+	<SubTexture name="guns cutscene instance 10022" x="5450" y="338" width="610" height="338"/>
+	<SubTexture name="guns cutscene instance 10023" x="6060" y="338" width="610" height="338"/>
+	<SubTexture name="guns cutscene instance 10024" x="6670" y="338" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10025" x="7270" y="338" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10026" x="0" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10027" x="600" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10028" x="1200" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10029" x="1800" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10030" x="2400" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10031" x="3000" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10032" x="3600" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10033" x="4200" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10034" x="4800" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10035" x="5400" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10036" x="6000" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10037" x="6600" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10038" x="7200" y="676" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10039" x="0" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10040" x="600" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10041" x="1200" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10042" x="1800" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10043" x="2400" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10044" x="3000" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10045" x="3600" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10046" x="4200" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10047" x="4800" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10048" x="5400" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10049" x="6000" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10050" x="6600" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10051" x="7200" y="1014" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10052" x="0" y="1352" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10053" x="600" y="1352" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10054" x="1200" y="1352" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10055" x="1800" y="1352" width="600" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10056" x="2400" y="1352" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10057" x="3004" y="1352" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10058" x="3608" y="1352" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10059" x="4212" y="1352" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10060" x="4816" y="1352" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10061" x="5420" y="1352" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10062" x="6024" y="1352" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10063" x="6628" y="1352" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10064" x="7232" y="1352" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10065" x="0" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10066" x="604" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10067" x="1208" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10068" x="1812" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10069" x="2416" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10070" x="3020" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10071" x="3624" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10072" x="4228" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10073" x="4832" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10074" x="5436" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10075" x="6040" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10076" x="6644" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10077" x="7248" y="1690" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10078" x="0" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10079" x="604" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10080" x="1208" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10081" x="1812" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10082" x="2416" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10083" x="3020" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10084" x="3624" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10085" x="4228" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10086" x="4832" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10087" x="5436" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10088" x="6040" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10089" x="6644" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10090" x="7248" y="2028" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10091" x="0" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10092" x="604" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10093" x="1208" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10094" x="1812" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10095" x="2416" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10096" x="3020" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10097" x="3624" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10098" x="4228" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10099" x="4832" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10100" x="5436" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10101" x="6040" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10102" x="6644" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10103" x="7248" y="2366" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10104" x="0" y="2704" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10105" x="604" y="2704" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+	<SubTexture name="guns cutscene instance 10106" x="1208" y="2704" width="604" height="338" frameX="0" frameY="0" frameWidth="610" frameHeight="338"/>
+</TextureAtlas>

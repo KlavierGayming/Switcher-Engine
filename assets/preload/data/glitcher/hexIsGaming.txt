@@ -1,0 +1,33 @@
+/bf/!CUT13!Huff.. puff... wow we spent a whole day on this.
+/bf/!CUT13!Aren't you tired?
+/dad/!CUT13!Nope! Not yet at least.
+/dad/!CUT13!My battery is solar-based so i'm saving energy at nights!
+/bf/!CUT13!Pff, lucky you then.
+/gf/!CUT14!I'm tired though... I think we should go now.
+/bf/!CUT15!I agree.
+/bf/!CUT15!Well, see ya around dad!
+/dad/!CUT16!Yes, it was very fun! Good night-
+/dad/!CUT17!BZZZZZZZZZZT-
+/bf/!CUT18!H-Huh? dad?
+/dad/!CUT18!...Uh oh.
+/dad/!CUT18!I think we might have a problem...
+/bf/!CUT18!What problem?
+/dad/!CUT19!I probably used too much processing power and let my guard down...
+/dad/!CUT19!Something might have passed by my defenses, which means...
+/dad/!CUT20!There might be a virus inside me.
+/gf/!CUT20!Huh? Wait, isn't that like, dangerous to machines?
+/dad/!CUT20!VERY dangerous.... oh no.
+/dad/!CUT21!I think it wants to take control over the system.
+/bf/!CUT21!Shoot... can't you do something to prevent that?
+/dad/!CUT21!I... don't think i can... but.
+/dad/!CUT21!Wait. Maybe you can.
+/bf/!CUT22!Huh?
+/dad/!CUT22!Grab my mic and fight that thing off!
+/dad/!CUT22!If you order the system to input enough mic patterns it might crash.
+/dad/!CUT22!Then i'll enter sleep mode and run a safety scan which will kill that thing.
+/dad/!CUT23!Please! You're my only hope right now!
+/bf/!CUT23!...
+/bf/!CUT24!...Alright dad, i'll try. I'm not leaving you behind.
+/bf/!CUT24!Are you ready?
+/dad/!CUT25!...
+/dad/!CUT26!...I'm always ready.

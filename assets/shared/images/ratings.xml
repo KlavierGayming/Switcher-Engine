@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="ratings.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="angy0000" x="0" y="0" width="156" height="130"/>
+	<SubTexture name="ayyy0000" x="156" y="0" width="156" height="130"/>
+	<SubTexture name="ded0000" x="312" y="0" width="156" height="130"/>
+	<SubTexture name="kewl0000" x="0" y="130" width="156" height="130"/>
+</TextureAtlas>

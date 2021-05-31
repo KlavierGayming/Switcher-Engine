@@ -1,0 +1,22 @@
+/gf/!CUT1!Geez... That was intense. Have you seen his face?
+/bf/!CUT1!Yea, it was very uh.... "ballistic".
+/gf/!CUT1!At least now we can go to the park like we originally intended!
+/bf/!CUT1!Mhm!
+/gf/!CUT2!You know, i really had fun during all those weeks spent with you.
+/bf/!CUT2!I'm glad you did... 
+/gf/!CUT2!Makes me wonder who will be next to challenge you, pff.
+/bf/!CUT2!Hopefully no one anytime soon, i'm tired... 
+/dad/!CUT2!Hello!
+/bf/!CUT3!Hmm?
+/dad/!CUT4!Are you perhaps up for a game or two?
+/bf/!CUT4!Uhh... sorry dude, i'm not really good at basketball.
+/dad/!CUT4!Oh, no no, I meant like, you know, the microphone.
+/bf/!CUT4!Oh! Maybe then- Wait a minute.
+/bf/!CUT4!Are you another guy that's not cool with me dating her?
+/dad/!CUT5!Huh? No, where did that come from?
+/dad/!CUT5!I just thought it would be fun to use my microphone after a long time!
+/gf/!CUT5!Hmm... he does seem chill, what do you think?
+/bf/!CUT5!If it's gonna be just for fun then I'm up for it!
+/bf/!CUT5!Are you ready then... uh... what's your name?
+/dad/!CUT6!dad! I'm always ready!
+/bf/!CUT6!Alright dad, let's funk!

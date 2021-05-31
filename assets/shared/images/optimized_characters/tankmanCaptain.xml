@@ -1,0 +1,10 @@
+<TextureAtlas imagePath="tankmanCaptain.png">
+<!--  Created with A Tablet and a CSS Generator lol version 21.0.0.35450  -->
+<!--  http://www.adobe.com/products/animate.html  -->
+<SubTexture name="TANKMAN UGH instance 10000" x="1008" y="0" width="391" height="556" frameX="-7" frameY="-9" frameWidth="403" frameHeight="564"/>
+<SubTexture name="Tankman DOWN note instance 10000" x="0" y="0" width="580" height="469" frameX="-11" frameY="-20" frameWidth="580" frameHeight="473"/>
+<SubTexture name="Tankman Idle Dance instance 10000" x="580" y="0" width="428" height="572" frameX="-1" frameY="-19" frameWidth="432" frameHeight="573"/>
+<SubTexture name="Tankman Note Left instance 10000" x="0" y="572" width="498" height="516" frameX="0" frameY="-16" frameWidth="504" frameHeight="542"/>
+<SubTexture name="Tankman Right Note instance 10000" x="498" y="572" width="482" height="559" frameX="-12" frameY="-3" frameWidth="495" frameHeight="560"/>
+<SubTexture name="Tankman UP note instance 10000" x="1008" y="556" width="493" height="620" frameX="0" frameY="0" frameWidth="506" frameHeight="623"/>
+</TextureAtlas>
