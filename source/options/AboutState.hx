@@ -18,6 +18,7 @@ class AboutState extends MusicBeatState
 
 	var text:FlxText;
 
+
 	override function create()
 	{
 
@@ -64,7 +65,7 @@ class AboutState extends MusicBeatState
 		{
 			FlxG.switchState(new OptionsMenu());
 		}
-		#end
+        #end
 
 	}
 

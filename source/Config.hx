@@ -27,6 +27,19 @@ class Config {
         return false;
     }
 
+	public function setnoswitch(?value:Bool):Bool {
+		if (save.data.isnoswitch == null) save.data.isnoswitch = false;
+		
+		save.data.isnoswitch = !save.data.isnoswitch;
+		save.flush();
+        return save.data.isnoswitch;
+	}
+
+    public function getnoswitch():Bool {
+        if (save.data.isnoswitch != null) return save.data.isnoswitch;
+        return false;
+    }
+
 	public function setnogf(?value:Bool):Bool {
 		if (save.data.isnogf == null) save.data.isnogf = false;
 		

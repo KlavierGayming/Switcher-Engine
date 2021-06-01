@@ -18,6 +18,7 @@ class CreditsState extends MusicBeatState
 
 	var text:FlxText;
 
+
 	override function create()
 	{
 

@@ -21,7 +21,7 @@ class OptimizationOptions extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['no gf: off', 'no bgs: off', 'opti char sprites: off', 'no health icons: off', 'About'];
+	var menuItems:Array<String> = ['no gf: off', 'no bgs: off', /*'opti char sprites: off',*/ 'no health icons: off', 'no bg switches: off', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -46,6 +46,7 @@ class OptimizationOptions extends MusicBeatState
 		menuBG.antialiasing = true;
 		add(menuBG);
 
+
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
 
@@ -63,6 +64,10 @@ class OptimizationOptions extends MusicBeatState
 
 		if (config.getnoicon()){
 			menuItems[menuItems.indexOf('no health icons: off')] = 'no health icons: on';
+		}
+
+		if (config.getnoswitch()){
+			menuItems[menuItems.indexOf('no bg switches: off')] = 'no bg switches: on';
 		}
 
 		for (i in 0...menuItems.length)
@@ -102,6 +107,9 @@ class OptimizationOptions extends MusicBeatState
 					FlxG.resetState();
 				case "no health icons: on" | "no health icons: off":
 					config.setnoicon();
+					FlxG.resetState();
+				case "no bg switches: on" | "no bg switches: off":
+					config.setnoswitch();
 					FlxG.resetState();
 			}
 		}

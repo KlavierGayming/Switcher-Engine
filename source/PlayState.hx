@@ -90,6 +90,7 @@ class PlayState extends MusicBeatState
 
 	var isNoBg:Bool = new Config().getnobg();
 	var isNoGf:Bool = new Config().getnogf();
+	var isNoSwitch = new Config().getnoswitch();
 
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
@@ -1181,6 +1182,42 @@ class PlayState extends MusicBeatState
 		super.create();
 	}
 
+	function picoSwitch():Void
+	{
+		remove(gf);
+		remove(boyfriend);
+		remove(dad);
+		remove(phillyBg);
+
+		gf = new Character(400, 130, 'gfNeo');
+		boyfriend = new Boyfriend(770, 450, 'bfNeo');
+		dad = new Character(100, 400, 'picoNeo');
+
+		add(phillyBgNeo);
+		if (!isNoGf)
+		add(gf);
+
+		add(dad);
+		add(boyfriend);
+	}
+	function picoBack():Void
+	{
+		remove(gf);
+		remove(phillyBgNeo);
+		remove(dad);
+		remove(boyfriend);
+
+		boyfriend = new Boyfriend(770, 450, 'bf');
+		dad = new Character(100, 400, 'pico');
+		gf = new Character(400, 130, 'gf');
+
+		add(phillyBg);
+		if (!isNoGf)
+		add(gf);
+
+		add(boyfriend);
+		add(dad);
+	}
 	function glitcherSwitch():Void
 	{
 		remove(gf);
@@ -2869,7 +2906,7 @@ class PlayState extends MusicBeatState
 				dad.playAnim('good');
 			}
 		}
-		if (!isNoBg)
+		if (!isNoBg || !isNoSwitch)
 		{
 		if (SONG.song.toLowerCase() == 'glitcher')
 		{
@@ -2879,6 +2916,36 @@ class PlayState extends MusicBeatState
 					glitcherSwitch();
 				case 837:
 					glitcherBack();
+			}
+		}
+		if (SONG.song.toLowerCase() == 'pico')
+		{
+			switch (curStep)
+	        {
+				case 418:
+					picoSwitch();
+                case 758:
+					picoBack();
+			}
+		}
+		if (SONG.song.toLowerCase() == 'philly')
+		{
+			switch (curStep)
+			{
+				case 447:
+					picoSwitch();
+				case 771:
+					picoBack();
+			}
+		}
+		if (SONG.song.toLowerCase() == 'blammed')
+		{
+			switch (curStep)
+			{
+				case 512:
+					picoSwitch();
+				case 768:
+					picoBack();
 			}
 		}
 	    }

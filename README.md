@@ -55,11 +55,13 @@ and run command "lime test android"
 
 ## Credits / shoutouts
 
-- [ninjamuffin99 (me!)](https://twitter.com/ninja_muffin99) - Programmer
+- [Luckydog7](https://github.com/luckydog7) - The chad who ported FNF
+- [Klav](https://www.youtube.com/channel/UCcaaRaMVhZulqORqfbr17zw) - The one who made the engine
+
+## Credits / shoutouts to FNF creators
+- [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programmer
 - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
 - [Kawaisprite](https://twitter.com/kawaisprite) - Musician
-
-This game was made with love to Newgrounds and it's community. Extra love to Tom Fulp.
 
 спасибо за такую активность
 ![изображение](https://user-images.githubusercontent.com/59097731/104740090-91d00600-5758-11eb-9a7c-30d756df3740.png)
