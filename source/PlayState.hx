@@ -1836,14 +1836,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-	    //if(!OptionsMenu.accuracyDisabled)
-		//{
 		scoreTxt.text = "Score:" + songScore + "\nMisses:" + misses + "\nSong name:" + SONG.song + " (" + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + ")\nNote hits:" + notehit + "\nCombo:" + combo + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + "s \nMade by Klavier Gayming";
-		//}
-		/*else
-		{
-		scoreTxt.text = "Score:" + songScore + "| Made by Klavier Gayming";
-		}*/
 
 		if (misses <= 10 && misses != 0)
 		{
