@@ -2175,6 +2175,16 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
+				case 'gfNeo':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+		
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}
 				case 'gfSunset':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
