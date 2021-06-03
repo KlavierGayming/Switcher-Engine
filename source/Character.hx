@@ -1330,7 +1330,7 @@ class Character extends FlxSprite
 
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('optimized_characters/DADDY_DEAREST');
+				tex = Paths.getSparrowAtlas('optimized_characters/DADDY_DEAREST','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Dad idle dance', 24);
 				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
@@ -1417,7 +1417,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 			case 'hexWire':
 				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('optimized_characters/hex','shared');
+				tex = Paths.getSparrowAtlas('optimized_characters/hexVirus','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Hex crazy idle', 24);
 				animation.addByPrefix('singUP', 'Hex crazy up', 24);

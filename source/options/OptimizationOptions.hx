@@ -21,7 +21,7 @@ class OptimizationOptions extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['no gf: off', 'no bgs: off', /*'opti char sprites: off',*/ 'no health icons: off', 'no bg switches: off', 'About'];
+	var menuItems:Array<String> = ['no gf: off', 'no bgs: off', 'opti char sprites: off', 'no health icons: off', 'no bg switches: off', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -39,7 +39,7 @@ class OptimizationOptions extends MusicBeatState
 	{
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic('assets/images/menuDesat.png');
 		//controlsStrings = CoolUtil.coolTextFile('assets/data/controls.txt');
-		menuBG.color = 0x8817145;
+		menuBG.color = 0x7429130;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();

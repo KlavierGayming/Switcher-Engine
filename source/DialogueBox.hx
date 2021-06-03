@@ -17,13 +17,6 @@ class DialogueBox extends FlxSpriteGroup
 	var box:FlxSprite;
 
 	var curCharacter:String = '';
-	var name:String = '';
-
-	//nametags go brrrrrrrrrrrrrrrr
-	var gfNametag:FlxSprite;
-	var bfNametag:FlxSprite;
-	var dadNametag:FlxSprite;
-
 
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
@@ -40,13 +33,6 @@ class DialogueBox extends FlxSpriteGroup
 
 	var handSelect:FlxSprite;
 	var bgFade:FlxSprite;
-	var box2:FlxSprite;
-
-	var inCutscene = false;
-	var cutscene:FlxSprite;
-	var curCutscene:String = '';
-	var oldCutscene:String = '';
-
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
 	{
@@ -59,9 +45,6 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'thorns':
 				FlxG.sound.playMusic(Paths.music('LunchboxScary'), 0);
-				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'dunk' | 'ram' | 'hello-world' | 'glitcher':
-			    FlxG.sound.playMusic("assets/hex/music/givinALittle.ogg");
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 		}
 
@@ -104,12 +87,6 @@ class DialogueBox extends FlxSpriteGroup
 				var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 				face.setGraphicSize(Std.int(face.width * 6));
 				add(face);
-			case 'dunk' | 'ram' | 'hello-world' | 'glitcher':
-                    hasDialog = true;
-					box2 = new FlxSprite(-20, 45).loadGraphic(Paths.image('dialogue','hex'));
-			        
-					cutscene = new FlxSprite(0, 0).loadGraphic(Paths.image('cutscene/$curCutscene','hex'));
-					add(cutscene);
 		}
 
 		this.dialogueList = dialogueList;
@@ -134,36 +111,11 @@ class DialogueBox extends FlxSpriteGroup
 		portraitRight.scrollFactor.set();
 		add(portraitRight);
 		portraitRight.visible = false;
-
-		dadNametag = new FlxSprite(0, 0).loadGraphic(Paths.image('hex_nametag','hex'));
-		add(dadNametag);
-		dadNametag.visible = false;
-
-		bfNametag = new FlxSprite(0, 0).loadGraphic(Paths.image('bf_nametag','hex'));
-		add(bfNametag);
-		bfNametag.visible = false;
-
-		gfNametag = new FlxSprite(0,0).loadGraphic(Paths.image('gf_nametag','hex'));
-		add(gfNametag);
-		gfNametag.visible = false;
-
-
-
-
-		switch (PlayState.SONG.song.toLowerCase()) {
-			case 'dunk' | 'ram' | 'hello-world' | 'glitcher':
-				remove(cutscene);
-				cutscene = new FlxSprite(0, 0).loadGraphic(Paths.image('cutscene/$curCutscene','hex'));
-				add(cutscene);
-		}
-
 		
-	
 		box.animation.play('normalOpen');
 		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 		box.updateHitbox();
 		add(box);
-		add(box2);
 
 		box.screenCenter(X);
 		portraitLeft.screenCenter(X);
@@ -309,42 +261,12 @@ class DialogueBox extends FlxSpriteGroup
 					portraitRight.animation.play('enter');
 				}
 		}
-		switch (name)
-	    {
-			case 'bf':
-				bfNametag.visible = false;
-				if (!dadNametag.visible || !gfNametag.visible)
-				{
-					bfNametag.visible = true;
-				}
-			case 'gf':
-				gfNametag.visible = false;
-				if (!dadNametag.visible || !bfNametag.visible)
-				{
-					gfNametag.visible = true;
-				}
-			case 'dad':
-				dadNametag.visible = true;
-				if (!bfNametag.visible || !gfNametag.visible)
-				{
-					dadNametag.visible = true;
-				}
-		}
 	}
 
 	function cleanDialog():Void
 	{
 		var splitName:Array<String> = dialogueList[0].split(":");
 		curCharacter = splitName[1];
-		dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();
-
-		var splitData:Array<String> = dialogueList[0].split("!");
-		oldCutscene = curCutscene;
-		curCutscene = splitData[1];
-		dialogueList[0] = dialogueList[0].substr(splitData[1].length + 2).trim();
-
-		var funiThing:Array<String> = dialogueList[0].split("/");
-		name = splitName[1];
 		dialogueList[0] = dialogueList[0].substr(splitName[1].length + 2).trim();
 	}
 }
