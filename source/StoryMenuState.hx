@@ -23,19 +23,17 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
-		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dadbattle'],
-		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly', "Blammed"],
-		['Satin-Panties', "High", "Milf"],
-		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-		['Senpai', 'Roses', 'Thorns'],
-		['Ugh', 'Guns', 'Stress'],
-		['Dunk', 'RAM', 'Hello-World', 'Glitcher']
+		['best-girl'],
+		['Daddys-Girl', 'Salty-Love', 'Daughter-Complex'],
+		['Sweet-N-Spooky', 'Sour-N-Scary', 'Opheebop'],
+		['Protect', 'Defend', 'Safeguard'],
+		['Indie-Star', 'Rising-Star', 'Superstar'],
+		['Order-Up', 'Rush-Hour', 'Freedom'],
+		['Buckets', 'Logarithms', 'Terminal']
 	];
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['dad', 'bf', 'gf'],
@@ -45,20 +43,16 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf'],
-		['tenkmon', 'bf', 'gf'],
-		['hex', 'bf', 'gf']
 	];
 
 	var weekNames:Array<String> = [
-		"",
-		"Daddy Dearest",
-		"Spooky Month",
-		"PICO",
-		"MOMMY MUST MURDER",
-		"RED SNOW",
-		"hating simulator ft. moawling",
-		"TENKMON",
-		"HEX"
+		"FT. ITSUMI",
+		"Dad Jokes",
+		"Sweet n' sour",
+		"sister complex",
+		"Mom's Love",
+		"Dinner Date",
+		"Glitch Out",
 	];
 
 	var txtWeekTitle:FlxText;
