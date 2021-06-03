@@ -216,12 +216,12 @@ class PlayState extends MusicBeatState
 					"If you can beat me here...",
 					"Only then I will even CONSIDER letting you\ndate my daughter!"
 				];
-			case 'senpai':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiDialogue'));
-			case 'roses':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
-			case 'thorns':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
+			case 'buckets':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('buckets/bucketsDialogue'));
+			case 'logarithms':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('logarithms/logarithmsDialogue'));
+			case 'teriminal':
+				dialogue = CoolUtil.coolTextFile(Paths.txt('terminal/terminalDialogue'));
 			case 'dunk':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('dunk/hexIsGaming'));	
 			case 'ram':
@@ -230,6 +230,7 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('hello-world/hexIsGaming'));
 			case 'glitcher':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('glitcher/hexIsGaming'));
+
 		}
 
 		#if desktop
@@ -276,7 +277,7 @@ class PlayState extends MusicBeatState
 
 		switch (SONG.song.toLowerCase())
 		{
-                        case 'spookeez' | 'monster' | 'south': 
+                        case 'sweet-n-spooky' | 'ohpeebop' | 'sour-and-scary': 
                         {
                                 curStage = 'spooky';
 	                          halloweenLevel = true;
@@ -295,7 +296,7 @@ class PlayState extends MusicBeatState
 						  if (!isNoBg)
 		                  isHalloween = true;
 		          }
-		          case 'pico' | 'blammed' | 'philly': 
+		          case 'protect' | 'defend' | 'safeguard': 
                         {
 		                  curStage = 'philly';
 		                  phillyBg = new FlxSprite(0, 0).loadGraphic(Paths.image('phillyBg','shared'));
@@ -311,7 +312,7 @@ class PlayState extends MusicBeatState
 		                  phillyBgNeo.active = false;
 
 		          }
-		          case 'milf' | 'satin-panties' | 'high':
+		          case 'indie-star' | 'rising-star' | 'superstar':
 		          {
 		                  curStage = 'limo';
 		                  defaultCamZoom = 0.90;
@@ -361,7 +362,7 @@ class PlayState extends MusicBeatState
 		                  fastCar = new FlxSprite(-300, 160).loadGraphic(Paths.image('limo/fastCarLol'));
 		                  // add(limo);
 		          }
-		          case 'cocoa' | 'eggnog':
+		          case 'order-up' | 'rush-hour':
 		          {
 	                          curStage = 'mall';
 
@@ -424,7 +425,7 @@ class PlayState extends MusicBeatState
 						  if (!isNoBg)
 		                  add(santa);
 		          }
-		          case 'winter-horrorland':
+		          case 'freedom':
 		          {
 		                  curStage = 'mallEvil';
 		                  var bg:FlxSprite = new FlxSprite(-400, -500).loadGraphic(Paths.image('christmas/evilBG'));
@@ -447,7 +448,7 @@ class PlayState extends MusicBeatState
 						  if (!isNoBg)
 		                  add(evilSnow);
                         }
-		          case 'senpai' | 'roses':
+		          case 'buckets' | 'logarithms':
 		          {
 		                  curStage = 'school';
 
@@ -521,7 +522,7 @@ class PlayState extends MusicBeatState
 						  if (!isNoBg)
 		                  add(bgGirls);
 		          }
-		          case 'thorns':
+		          case 'terminal':
 		          {
 		                  curStage = 'schoolEvil';
 
