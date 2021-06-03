@@ -1156,14 +1156,14 @@ class PlayState extends MusicBeatState
 							});
 						});
 					});
-				case 'senpai':
+				case 'buckets':
 					schoolIntro(doof);
-				case 'roses':
+				case 'logarithms':
 					FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-				case 'thorns':
+				case 'terminal':
 					schoolIntro(doof);
-                case 'ugh':	
+                                case 'ugh':	
 					ughIntro();
 				case 'guns':
 					gunsIntro();
