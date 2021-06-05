@@ -1044,18 +1044,9 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-        /*if (OptionsMenu.accuracyDisabled)
-		{
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
-		scoreTxt.scrollFactor.set();
-		add(scoreTxt);
-		}
-		else
-		{
-		*/
 		scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y - 75, 0, "", 20);
 		scoreTxt.x = 0;
+		scoreTxt.y -= 100;
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
@@ -1072,16 +1063,12 @@ class PlayState extends MusicBeatState
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		if (!isNoIcon)
-		{
 		add(iconP1);
-		}
 
 		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		if (!isNoIcon)
-	    {
 		add(iconP2);
-		}
 
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -1836,7 +1823,8 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore + "\nMisses:" + misses + "\nSong name:" + SONG.song + " (" + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + ")\nNote hits:" + notehit + "\nCombo:" + combo + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + "s \nMade by Klavier Gayming";
+		scoreTxt.text = "Score:" + songScore + "\nMisses:" + misses + "\nSong name:" + SONG.song + " (" + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + ")\nNote hits:" + notehit + "\nCombo:" + combo + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + "s \nAccuracy:"+ accuracy +"%\nMade by Klavier Gayming\nAAAAA";
+
 
 		if (misses <= 10 && misses != 0)
 		{
@@ -2324,6 +2312,27 @@ class PlayState extends MusicBeatState
 
 		songScore += score;
 
+		if (daRating == 'sick')
+		{
+			accuracy += 15;
+		}
+		if (daRating == 'good')
+		{
+			accuracy += 7;
+		}
+		if (daRating == 'bad')
+		{
+			accuracy -= 7;
+		}
+		if (daRating == 'shit')
+		{
+			accuracy -= 15;
+		}
+
+		if (accuracy >= 100)
+		{
+			accuracy = 100;
+		}
 
 		/* if (combo > 60)
 				daRating = 'sick';
