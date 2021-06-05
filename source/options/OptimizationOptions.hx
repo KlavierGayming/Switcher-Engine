@@ -21,7 +21,7 @@ class OptimizationOptions extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['no gf: off', 'no bgs: off', 'opti char sprites: off', 'no health icons: off', 'no bg switches: off', 'About'];
+	var menuItems:Array<String> = ['no gf: off', 'no bgs: off', 'no cutscenes: off', 'no health icons: off', 'no bg switches: off', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -70,6 +70,10 @@ class OptimizationOptions extends MusicBeatState
 			menuItems[menuItems.indexOf('no bg switches: off')] = 'no bg switches: on';
 		}
 
+		if (config.getnocut()){
+			menuItems[menuItems.indexOf('no cutscenes: off')] = 'no cutscenes: on';
+		}
+
 		for (i in 0...menuItems.length)
 		{ 
 			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
@@ -111,6 +115,9 @@ class OptimizationOptions extends MusicBeatState
 				case "no bg switches: on" | "no bg switches: off":
 					config.setnoswitch();
 					FlxG.resetState();
+			    case "no cutscenes: on" | "no cutscenes: off":
+					config.setnocut();
+					FlxG.resetState();
 			}
 		}
 
@@ -119,7 +126,7 @@ class OptimizationOptions extends MusicBeatState
 		else
 		{
 			if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
-				FlxG.switchState(new options.OptionsMenu());
+				FlxG.switchState(new OtherState());
 			if (controls.UP_P)
 				changeSelection(-1);
 			if (controls.DOWN_P)

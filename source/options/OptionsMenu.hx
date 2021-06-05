@@ -21,7 +21,7 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['credits', #if mobile 'controls', #end 'set fps', 'no cutscenes: off', 'practice: off', 'optimization options', 'About'];
+	var menuItems:Array<String> = ['credits', #if mobile 'controls', #end 'set fps', 'practice: off', 'optimization options', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -53,9 +53,7 @@ class OptionsMenu extends MusicBeatState
 			menuItems[menuItems.indexOf('downscroll: off')] = 'downscroll: on';
 		}
 
-		if (config.getnocut()){
-			menuItems[menuItems.indexOf('no cutscenes: off')] = 'no cutscenes: on';
-		}
+
 
 		if (config.getpractice()){
 			menuItems[menuItems.indexOf('practice: off')] = 'practice: on';
@@ -92,9 +90,7 @@ class OptionsMenu extends MusicBeatState
 					trace('get rekt stealers');
 				case "controls":
 					FlxG.switchState(new options.CustomControlsState());
-				case "no cutscenes: on" | "no cutscenes: off":
-					config.setnocut();
-					FlxG.resetState();
+
 				case "config":
 					trace("hello");
 				case 'practice: on' | 'practice: off':
@@ -131,7 +127,7 @@ class OptionsMenu extends MusicBeatState
 		else
 		{
 			if (controls.BACK #if android || FlxG.android.justReleased.BACK #end)
-				FlxG.switchState(new MainMenuState());
+				FlxG.switchState(new OtherState());
 			if (controls.UP_P)
 				changeSelection(-1);
 			if (controls.DOWN_P)

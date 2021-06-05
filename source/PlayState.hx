@@ -1823,7 +1823,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore + "\nMisses:" + misses + "\nSong name:" + SONG.song + " (" + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + ")\nNote hits:" + notehit + "\nCombo:" + combo + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + "s \nAccuracy:"+ accuracy +"%\nMade by Klavier Gayming\nAAAAA";
+		scoreTxt.text = "Score:" + songScore + "\nMisses:" + misses + "\nSong name:" + SONG.song + " (" + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + ")\nNote hits:" + notehit + "\nCombo:" + combo + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + "s\nMade by Klavier Gayming\nAAAAA";
 
 
 		if (misses <= 10 && misses != 0)
@@ -1889,11 +1889,11 @@ class PlayState extends MusicBeatState
 			iconP1.animation.curAnim.curFrame = 1;
 		else
 			iconP1.animation.curAnim.curFrame = 0;
-
 		if (healthBar.percent > 80)
 			iconP2.animation.curAnim.curFrame = 1;
 		else
 			iconP2.animation.curAnim.curFrame = 0;
+
 
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
@@ -2312,19 +2312,19 @@ class PlayState extends MusicBeatState
 
 		songScore += score;
 
-		if (daRating == 'sick')
+		/*if (daRating == 'sick' || noteDiff > Conductor.safeZoneOffset * 0.1)
 		{
 			accuracy += 15;
 		}
-		if (daRating == 'good')
+		if (daRating == 'good' || noteDiff > Conductor.safeZoneOffset * 0.4)
 		{
 			accuracy += 7;
 		}
-		if (daRating == 'bad')
+		if (daRating == 'bad' || noteDiff > Conductor.safeZoneOffset * 0.74)
 		{
 			accuracy -= 7;
 		}
-		if (daRating == 'shit')
+		if (daRating == 'shit' || noteDiff > Conductor.safeZoneOffset * 0.9)
 		{
 			accuracy -= 15;
 		}
@@ -2332,7 +2332,7 @@ class PlayState extends MusicBeatState
 		if (accuracy >= 100)
 		{
 			accuracy = 100;
-		}
+		}*/
 
 		/* if (combo > 60)
 				daRating = 'sick';
