@@ -1044,6 +1044,8 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
+		
+
 		scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y - 75, 0, "", 20);
 		scoreTxt.x = 0;
 		scoreTxt.y -= 100;
