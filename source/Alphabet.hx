@@ -6,6 +6,8 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.util.FlxTimer;
+import flixel.FlxObject;
+import flixel.util.FlxAxes;
 
 using StringTools;
 
@@ -14,6 +16,7 @@ using StringTools;
  */
 class Alphabet extends FlxSpriteGroup
 {
+
 	public var delay:Float = 0.05;
 	public var paused:Bool = false;
 

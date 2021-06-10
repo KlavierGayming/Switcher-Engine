@@ -45,6 +45,10 @@ class CreditsState extends MusicBeatState
 		add(bg);
 		add(text);
 
+		#if mobileC
+		addVirtualPad(NONE, A_B);
+		#end
+
  
 		super.create();
 	}

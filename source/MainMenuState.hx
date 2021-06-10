@@ -38,6 +38,10 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 
+	//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaAA
+	var charRandom:Int = FlxG.random.int(0, 1);
+	var charName:String = "";
+
 	override function create()
 	{
 		#if desktop
@@ -55,19 +59,47 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
+		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('bgA'));
 		bg.scrollFactor.x = 0;
 		bg.scrollFactor.y = 0.18;
 		bg.setGraphicSize(Std.int(bg.width * 1.1));
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = true;
-		add(bg);
+		add(bg);		
+		
+		var matt:FlxSprite = new FlxSprite(150, 0);
+		matt.frames = Paths.getSparrowAtlas('chars');
+		matt.animation.addByPrefix('idle', 'matt idle', 12, true);
+		matt.screenCenter(Y);
+		matt.animation.play('idle');
+		if (charRandom == 1)
+		add(matt);
+		matt.updateHitbox();
+
+		var imposter:FlxSprite = new FlxSprite(-25, 0);
+		imposter.frames = Paths.getSparrowAtlas('chars');
+		imposter.animation.addByPrefix('idle', 'imposter idle', 12, true);
+		imposter.screenCenter(Y);
+		imposter.animation.play('idle');
+		if (charRandom == 0)
+		add(imposter);
+		imposter.updateHitbox();
+
+		var funi:FlxSprite = new FlxSprite(0, 650).makeGraphic(1280, 115, FlxColor.fromRGB(212, 187, 30));
+		funi.alpha = 0.5;
+		add(funi);
+
+		var funi2:FlxSprite = new FlxSprite(0, -150).makeGraphic(1280, 220, FlxColor.fromRGB(212, 187, 30));
+		funi2.alpha = 0.5;
+		add(funi2);
+
+
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
+		magenta = new FlxSprite(-80).loadGraphic(Paths.image('bgB'));
 		magenta.scrollFactor.x = 0;
 		magenta.scrollFactor.y = 0.18;
 		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
@@ -78,6 +110,9 @@ class MainMenuState extends MusicBeatState
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 		// magenta.scrollFactor.set();
+
+
+
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -97,7 +132,6 @@ class MainMenuState extends MusicBeatState
 			menuItem.antialiasing = true;
 		}
 
-		FlxG.camera.follow(camFollow, null, 0.06);
 
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "v" + Application.current.meta.get('version') + " - V1 SWITCHER ENGINE - FNF ANDROID VER 6", 12);
 		versionShit.scrollFactor.set();
@@ -200,6 +234,8 @@ class MainMenuState extends MusicBeatState
 			}
 		}
 
+
+
 		super.update(elapsed);
 
 		menuItems.forEach(function(spr:FlxSprite)
@@ -224,7 +260,7 @@ class MainMenuState extends MusicBeatState
 			if (spr.ID == curSelected)
 			{
 				spr.animation.play('selected');
-				camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
+				//camFollow.setPosition(spr.getGraphicMidpoint().x, spr.getGraphicMidpoint().y);
 			}
 
 			spr.updateHitbox();

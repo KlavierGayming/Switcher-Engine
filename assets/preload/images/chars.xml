@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="chars.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="impostor idle0000" x="0" y="0" width="635" height="379" frameX="0" frameY="0" frameWidth="698" frameHeight="379"/>
+	<SubTexture name="impostor idle0001" x="635" y="0" width="644" height="366" frameX="0" frameY="0" frameWidth="698" frameHeight="379"/>
+	<SubTexture name="impostor idle0002" x="1279" y="0" width="698" height="330" frameX="0" frameY="0" frameWidth="698" frameHeight="379"/>
+	<SubTexture name="impostor idle0003" x="0" y="379" width="698" height="349" frameX="0" frameY="0" frameWidth="698" frameHeight="379"/>
+	<SubTexture name="impostor idle0004" x="698" y="379" width="698" height="360" frameX="0" frameY="0" frameWidth="698" frameHeight="379"/>
+	<SubTexture name="matt idle0000" x="1396" y="379" width="367" height="439" frameX="0" frameY="0" frameWidth="367" frameHeight="441"/>
+	<SubTexture name="matt idle0001" x="0" y="818" width="367" height="435" frameX="0" frameY="0" frameWidth="367" frameHeight="441"/>
+	<SubTexture name="matt idle0002" x="367" y="818" width="367" height="437" frameX="0" frameY="0" frameWidth="367" frameHeight="441"/>
+	<SubTexture name="matt idle0003" x="734" y="818" width="367" height="437" frameX="0" frameY="0" frameWidth="367" frameHeight="441"/>
+	<SubTexture name="matt idle0004" x="1101" y="818" width="367" height="441"/>
+</TextureAtlas>

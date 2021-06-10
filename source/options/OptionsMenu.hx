@@ -7,6 +7,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import Config;
 import WebViewVideo;
+import flixel.FlxObject;
 
 import flixel.util.FlxSave;
 
