@@ -47,7 +47,8 @@ class AboutState extends MusicBeatState
 		add(text);
 
 		#if mobileC
-		addVirtualPad(NONE, B)
+		addVirtualPad(NONE, A_B);
+		#end
 		super.create();
 	}
 
