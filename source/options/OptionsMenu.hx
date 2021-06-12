@@ -22,7 +22,7 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['credits', #if mobile 'controls', #end 'set fps', 'practice: off', 'optimization options', 'About'];
+	var menuItems:Array<String> = ['credits', 'controls', 'set fps', 'practice: off', 'optimization options', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
