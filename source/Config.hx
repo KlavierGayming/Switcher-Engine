@@ -27,6 +27,19 @@ class Config {
         return false;
     }
 
+	public function setperweek(?value:Bool):Bool {
+		if (save.data.isperweek == null) save.data.isperweek = false;
+		
+		save.data.isperweek = !save.data.isperweek;
+		save.flush();
+        return save.data.isperweek;
+	}
+
+    public function getperweek():Bool {
+        if (save.data.isperweek != null) return save.data.isperweek;
+        return false;
+    }
+
 	public function setnoswitch(?value:Bool):Bool {
 		if (save.data.isnoswitch == null) save.data.isnoswitch = false;
 		

@@ -52,11 +52,20 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
 
+		var blueBalled:FlxText = new FlxText(20, 15 + 64, 0, "Blue balled (times): ", 32);
+		blueBalled.text += PlayState.deathCount;
+		blueBalled.scrollFactor.set();
+		blueBalled.setFormat(Paths.font('vcr.ttf'), 32);
+		blueBalled.updateHitbox();
+		add(blueBalled);
+		
+
 		levelDifficulty.alpha = 0;
 		levelInfo.alpha = 0;
 
 		levelInfo.x = FlxG.width - (levelInfo.width + 20);
 		levelDifficulty.x = FlxG.width - (levelDifficulty.width + 20);
+		blueBalled.x = FlxG.width - (blueBalled.width + 20);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
@@ -117,6 +126,7 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.switchState(new ChartingState());
 				case "Exit to menu":
 					FlxG.switchState(new MainMenuState());
+					PlayState.deathCount = 0;
 			}
 		}
 

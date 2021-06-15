@@ -56,6 +56,7 @@ class PlayState extends MusicBeatState
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
+	public static var deathCount:Int = 0;
 
 	var halloweenLevel:Bool = false;
 
@@ -78,6 +79,9 @@ class PlayState extends MusicBeatState
 	private var strumLineNotes:FlxTypedGroup<FlxSprite>;
 	private var playerStrums:FlxTypedGroup<FlxSprite>;
 
+	//splash
+	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
+
 	private var camZooming:Bool = false;
 	private var curSong:String = "";
 
@@ -90,7 +94,8 @@ class PlayState extends MusicBeatState
 
 	var isNoBg:Bool = new Config().getnobg();
 	var isNoGf:Bool = new Config().getnogf();
-	var isNoSwitch = new Config().getnoswitch();
+	var isNoSwitch:Bool = new Config().getnoswitch();
+	var isPerWeek:Bool = new Config().getperweek();
 
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
@@ -621,27 +626,27 @@ class PlayState extends MusicBeatState
 					if (!isNoBg)
 					add(ground);
 
-					tankBop1 = new FlxSprite(-500,550);
+					tankBop1 = new FlxSprite(-500,650);
 					tankBop1.frames = Paths.getSparrowAtlas('tank0','week7');
 					tankBop1.animation.addByPrefix('bop', 'fg tankhead far right instance 1', 24);
 					
-					tankBop2 = new FlxSprite(-300,650);
+					tankBop2 = new FlxSprite(-300,750);
 					tankBop2.frames = Paths.getSparrowAtlas('tank1','week7');
 					tankBop2.animation.addByPrefix('bop','fg tankhead 5 instance 1', 24);
 
-					tankBop3 = new FlxSprite(450,840);
+					tankBop3 = new FlxSprite(450,940);
 					tankBop3.frames = Paths.getSparrowAtlas('tank2','week7');
 					tankBop3.animation.addByPrefix('bop','foreground man 3 instance 1', 24);
 
-					tankBop4 = new FlxSprite(1300,1100);
+					tankBop4 = new FlxSprite(1300,1200);
 					tankBop4.frames = Paths.getSparrowAtlas('tank3','week7');
 					tankBop4.animation.addByPrefix('bop','fg tankhead 4 instance 1', 24);
 
-					tankBop5 = new FlxSprite(1300,800);
+					tankBop5 = new FlxSprite(1300,900);
 					tankBop5.frames = Paths.getSparrowAtlas('tank4','week7');
 					tankBop5.animation.addByPrefix('bop','fg tankman bobbin 3 instance 1', 24);
 					
-					tankBop6 = new FlxSprite(1620,600);
+					tankBop6 = new FlxSprite(1620,700);
 					tankBop6.frames = Paths.getSparrowAtlas('tank5','week7');
 					tankBop6.animation.addByPrefix('bop','fg tankhead far right instance 1', 24);
 				  }
@@ -999,6 +1004,7 @@ class PlayState extends MusicBeatState
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
+
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
 
@@ -1377,6 +1383,7 @@ class PlayState extends MusicBeatState
 		#if mobileC
 		mcontrols.visible = true;
 		#end
+
 		
 		inCutscene = false;
 
@@ -2057,6 +2064,8 @@ class PlayState extends MusicBeatState
 			persistentDraw = false;
 			paused = true;
 
+			deathCount += 1;
+
 			vocals.stop();
 			FlxG.sound.music.stop();
 
@@ -2194,7 +2203,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	public function endSong():Void
+	function endSong():Void
 	{
 		canPause = false;
 		FlxG.sound.music.volume = 0;
@@ -2223,6 +2232,8 @@ class PlayState extends MusicBeatState
 
 				// if ()
 				StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
+			
+				deathCount = 0;
 
 				if (SONG.validScore)
 				{
@@ -2246,6 +2257,10 @@ class PlayState extends MusicBeatState
 					difficulty = '-hard';
 
 				trace('LOADING NEXT SONG');
+				
+				if (!isPerWeek)
+				deathCount = 0;
+
 				trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
 
 				if (SONG.song.toLowerCase() == 'eggnog')
@@ -2273,6 +2288,7 @@ class PlayState extends MusicBeatState
 		{
 			trace('WENT BACK TO FREEPLAY??');
 			FlxG.switchState(new FreeplayState());
+			deathCount = 0;
 		}
 	}
 
@@ -2311,6 +2327,8 @@ class PlayState extends MusicBeatState
 			daRating = 'good';
 			score = 200;
 		}
+
+
 
 		songScore += score;
 
@@ -2689,24 +2707,13 @@ class PlayState extends MusicBeatState
 	function noteMissTwo(direction:Int = 1):Void
         {
             if (!boyfriend.stunned)
-            {
-                //health -= 0.04;
-                if (combo > 5 && gf.animOffsets.exists('sad'))
-                {
-                    //gf.playAnim('sad');
-                }
-                //combo = 0;
-    
-                //songScore -= 10;
-    
+            {    
                 FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-                // FlxG.sound.play(Paths.sound('missnote1'), 1, false);
-                // FlxG.log.add('played imss note');
     
                 boyfriend.stunned = true;
     
                 // get stunned for 5 seconds
-                new FlxTimer().start(5 / 60, function(tmr:FlxTimer)
+                new FlxTimer().start(0.7, function(tmr:FlxTimer)
                 {
                     boyfriend.stunned = false;
                 });
@@ -2909,9 +2916,11 @@ class PlayState extends MusicBeatState
 			{
 				dad.playAnim('good');
 			}
-		}
-		if (!isNoBg || !isNoSwitch)
-		{
+	    }
+
+	
+	if (!isNoBg || !isNoSwitch)
+	{
 		if (SONG.song.toLowerCase() == 'glitcher')
 		{
 			switch (curStep)
@@ -2952,9 +2961,8 @@ class PlayState extends MusicBeatState
 					picoBack();
 			}
 		}
-	    }
 	}
-
+	}
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
 
@@ -3023,6 +3031,7 @@ class PlayState extends MusicBeatState
 			boyfriend.playAnim('hey', true);
 			dad.playAnim('cheer', true);
 		}
+		
     if (!isNoBg)
 	{
 		switch (curStage)

@@ -8,8 +8,8 @@ import flixel.text.FlxText;
 import Config;
 import WebViewVideo;
 import flixel.FlxObject;
-
 import flixel.util.FlxSave;
+import flixel.util.FlxColor;
 
 class OptionsMenu extends MusicBeatState
 {
@@ -22,12 +22,15 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['credits', 'controls', 'set fps', 'practice: off', 'optimization options', 'About'];
+	var menuItems:Array<String> = [#if mobile 'controls', #end 'set fps', 'practice: off', 'death counter per song', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
 	var BACK:Bool;
 	var ACCEPT:Bool;
+
+	var descr:String = '';
+	var desc:FlxText;
 
 	// stuff.
 	public var accuracyDisabled:Bool = false;
@@ -50,11 +53,23 @@ class OptionsMenu extends MusicBeatState
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
 
+		var smol:FlxSprite = new FlxSprite(0, 750).makeGraphic(FlxG.width, 50, FlxColor.BLACK);
+		smol.alpha = 0.25;
+		add(smol);
+
+		desc = new FlxText(0, 750, 0, "", 12);
+		desc.scrollFactor.set();
+		desc.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		desc.updateHitbox();
+		add(desc);
+
 		if (config.getdownscroll()){
 			menuItems[menuItems.indexOf('downscroll: off')] = 'downscroll: on';
 		}
 
-
+		if (config.getperweek()){
+			menuItems[menuItems.indexOf('death counter per song')] = 'death counter per week';
+		}
 
 		if (config.getpractice()){
 			menuItems[menuItems.indexOf('practice: off')] = 'practice: on';
@@ -68,6 +83,9 @@ class OptionsMenu extends MusicBeatState
 			grpControls.add(controlLabel);
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
+
+		add(desc);
+		add(smol);
 
 		#if mobileC
 		addVirtualPad(UP_DOWN, A_B);
@@ -88,7 +106,7 @@ class OptionsMenu extends MusicBeatState
 			{
 				case "credits":
 					FlxG.switchState(new options.CreditsState());
-					trace('get rekt stealers');
+					descr = 'Check the credits lol';
 				case "controls":
 					FlxG.switchState(new options.CustomControlsState());
 
@@ -97,30 +115,35 @@ class OptionsMenu extends MusicBeatState
 				case 'practice: on' | 'practice: off':
 					config.setpractice();
 					FlxG.resetState();
-				
 				case "set fps":
 					insubstate = true;
 					openSubState(new options.SetFpsSubState());
-				
 				case "downscroll: on" | "downscroll: off":
 					config.setdownscroll();
+					FlxG.resetState();
+				case 'death counter per song' | 'death counter per week':
+					config.setperweek();
 					FlxG.resetState();
 				
 				case "About":
 					FlxG.switchState(new options.AboutState());
-				case "optimization options":
-					FlxG.switchState(new options.OptimizationOptions());
-				case "test cutscene":
-					//webview.openHTML(Assets.getBytes('assets/index.html'));
-					//webview.openURLfromAssets('index.html');
-					//FlxG.stage.width = 1600; 
-					//FlxG.stage.frameRate = 30;
-					//FlxG.stage;
-					//trace(FlxG.stage.width);
-					#if extension-webview
-					WebViewVideo.openVideo('ughCutscene');
-					#end
 			}
+		}
+		var daSelected:String = menuItems[curSelected];
+		switch(daSelected)
+		{
+			case "controls":
+				desc.text = 'Change your controls.';
+			case 'practice: on' | 'practice: off':
+				desc.text = 'Turn practice mode on or off. Makes you invincible.';
+			case "set fps":
+				desc.text = 'You can change your fps from 60 to 90.';
+			case "downscroll: on" | "downscroll: off":
+				desc.text = 'Turn downscroll on or off. Makes the arrows go down instead of up.';
+			case 'death counter per song' | 'death counter per week':
+				desc.text = 'Change whether the death counter resets per song or per week.';
+			case "About":
+				desc.text = 'About the android port.';
 		}
 
 		if (isSettingControl)
