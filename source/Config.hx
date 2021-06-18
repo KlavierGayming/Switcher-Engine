@@ -27,6 +27,19 @@ class Config {
         return false;
     }
 
+	public function setneo(?value:Bool):Bool {
+		if (save.data.isneo == null) save.data.isneo = false;
+		
+		save.data.isneo = !save.data.isneo;
+		save.flush();
+        return save.data.isneo;
+	}
+
+    public function getneo():Bool {
+        if (save.data.isneo != null) return save.data.isneo;
+        return false;
+    }
+
 	public function setperweek(?value:Bool):Bool {
 		if (save.data.isperweek == null) save.data.isperweek = false;
 		
@@ -34,6 +47,7 @@ class Config {
 		save.flush();
         return save.data.isperweek;
 	}
+	
 
     public function getperweek():Bool {
         if (save.data.isperweek != null) return save.data.isperweek;

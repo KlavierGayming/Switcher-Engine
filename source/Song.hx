@@ -28,6 +28,8 @@ class Song
 	public var needsVoices:Bool = true;
 	public var speed:Float = 1;
 
+	
+
 	public var player1:String = 'bf';
 	public var player2:String = 'dad';
 
@@ -40,7 +42,12 @@ class Song
 
 	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
 	{
+		var isNeo:Bool = new Config().getneo();
+		
+		if (!isNeo)
 		var rawJson = Assets.getText(Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
+		else
+		var rawJson = Assets.getText(Paths.jsonneo(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
 
 		while (!rawJson.endsWith("}"))
 		{

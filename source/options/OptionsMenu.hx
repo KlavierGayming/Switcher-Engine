@@ -22,14 +22,14 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = [#if mobile 'controls', #end 'set fps', 'practice: off', 'death counter per song', 'About'];
+	var menuItems:Array<String> = [#if mobile 'controls', #end 'set fps', 'practice: off', 'death counter per song', 'Neo remixes: Off', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
 	var BACK:Bool;
 	var ACCEPT:Bool;
 
-	var descr:String = '';
+
 	var desc:FlxText;
 
 	// stuff.
@@ -53,8 +53,9 @@ class OptionsMenu extends MusicBeatState
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
 
-		var smol:FlxSprite = new FlxSprite(0, 750).makeGraphic(FlxG.width, 50, FlxColor.BLACK);
-		smol.alpha = 0.25;
+
+		var smol:FlxSprite = new FlxSprite(0, 750).makeGraphic(FlxG.width, 25, FlxColor.BLACK);
+		smol.alpha = 0.5;
 		add(smol);
 
 		desc = new FlxText(0, 750, 0, "", 12);
@@ -62,6 +63,8 @@ class OptionsMenu extends MusicBeatState
 		desc.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		desc.updateHitbox();
 		add(desc);
+
+
 
 		if (config.getdownscroll()){
 			menuItems[menuItems.indexOf('downscroll: off')] = 'downscroll: on';
@@ -75,6 +78,10 @@ class OptionsMenu extends MusicBeatState
 			menuItems[menuItems.indexOf('practice: off')] = 'practice: on';
 		}
 
+		if (config.getneo()){
+			menuItems[menuItems.indexOf('neo remixes: off')] = 'neo remixes: on';
+		}
+
 		for (i in 0...menuItems.length)
 		{ 
 			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
@@ -84,8 +91,7 @@ class OptionsMenu extends MusicBeatState
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
 
-		add(desc);
-		add(smol);
+
 
 		#if mobileC
 		addVirtualPad(UP_DOWN, A_B);
@@ -106,9 +112,9 @@ class OptionsMenu extends MusicBeatState
 			{
 				case "credits":
 					FlxG.switchState(new options.CreditsState());
-					descr = 'Check the credits lol';
+					
 				case "controls":
-					FlxG.switchState(new options.CustomControlsState());
+				FlxG.switchState(new options.CustomControlsState());
 
 				case "config":
 					trace("hello");
@@ -127,22 +133,39 @@ class OptionsMenu extends MusicBeatState
 				
 				case "About":
 					FlxG.switchState(new options.AboutState());
+				case 'neo remixes: on' | 'neo remixes: off':
+					config.setneo();
+					FlxG.resetState();
 			}
 		}
+
 		var daSelected:String = menuItems[curSelected];
+
 		switch(daSelected)
 		{
 			case "controls":
+				desc.visible = true;
+				desc.alpha = 1;
 				desc.text = 'Change your controls.';
 			case 'practice: on' | 'practice: off':
+				desc.visible = true;
+				desc.alpha = 1;
 				desc.text = 'Turn practice mode on or off. Makes you invincible.';
 			case "set fps":
+				desc.visible = true;
+				desc.alpha = 1;
 				desc.text = 'You can change your fps from 60 to 90.';
 			case "downscroll: on" | "downscroll: off":
+				desc.visible = true;
+				desc.alpha = 1;
 				desc.text = 'Turn downscroll on or off. Makes the arrows go down instead of up.';
 			case 'death counter per song' | 'death counter per week':
+				desc.visible = true;
+				desc.alpha = 1;
 				desc.text = 'Change whether the death counter resets per song or per week.';
 			case "About":
+				desc.visible = true;
+				desc.alpha = 1;
 				desc.text = 'About the android port.';
 		}
 

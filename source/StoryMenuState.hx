@@ -21,21 +21,39 @@ using StringTools;
 class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
+	var isNeo:Bool = new Config().getneo();
 
-	var weekData:Array<Dynamic> = [
-		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dadbattle'],
-		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly', "Blammed"],
-		['Satin-Panties', "High", "Milf"],
-		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-		['Senpai', 'Roses', 'Thorns'],
-		['Ugh', 'Guns', 'Stress'],
-		['Dunk', 'RAM', 'Hello-World', 'Glitcher']
-	];
+	if (!isNeo)
+	{
+		var weekData:Array<Dynamic> = [
+			['Tutorial'],
+			['Bopeebo', 'Fresh', 'Dadbattle'],
+			['Spookeez', 'South'],
+			['Pico', 'Philly', "Blammed"],
+			['Satin-Panties', "High", "Milf"],
+			['Cocoa', 'Eggnog', 'Winter-Horrorland'],
+			['Senpai', 'Roses', 'Thorns'],
+			['Ugh', 'Guns', 'Stress'],
+			['Dunk', 'RAM', 'Hello-World', 'Glitcher']
+		];
+	}
+	else
+	{
+		var weekData:Array<Dynamic> = [
+			['Tutorial'],
+			['Bopeebo', 'Fresh', 'Dadbattle'],
+			['Spookeez', 'South', "Monster"],
+			['Pico', 'Philly', "Blammed"],
+			['Satin-Panties', "High", "Milf"]
+		];
+	}
+
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true];
+	if (!isNeo)
+		public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true];
+	else
+		public static var weekUnlocked:Array<Bool> = [true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['dad', 'bf', 'gf'],

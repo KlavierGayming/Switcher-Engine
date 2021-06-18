@@ -8,11 +8,15 @@ class HealthIcon extends FlxSprite
 	 * Used for FreeplayState! If you use it elsewhere, prob gonna annoying
 	 */
 	public var sprTracker:FlxSprite;
+	var isNeo:Bool = new Config().getneo();
 
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
+		if (!isNeo)
 		loadGraphic(Paths.image('iconGrid'), true, 150, 150);
+		else
+		loadGraphic(Paths.image('iconGridNeo'), true, 150, 150);
 
 		antialiasing = true;
 		animation.add('bf', [0, 1], 0, false, isPlayer);

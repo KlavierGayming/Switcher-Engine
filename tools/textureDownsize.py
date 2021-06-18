@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 # Note that both the width and height are downsized (downsize = 2 returns an image 1/4 of the original size)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('downsize', help='Image downsizing factor.')
+parser.add_argument('downsize', help= '2')
 parser.add_argument('xml', help='The path of the XML file.')
 parser.add_argument('img', help='The path of the image file.')
 args = parser.parse_args()

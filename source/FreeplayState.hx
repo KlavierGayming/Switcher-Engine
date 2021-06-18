@@ -31,6 +31,8 @@ class FreeplayState extends MusicBeatState
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
+	var isNeo:Bool = new Config().getneo();
+
 
 
 	private var iconArray:Array<HealthIcon> = [];
@@ -63,6 +65,8 @@ class FreeplayState extends MusicBeatState
 		isDebug = true;
 		#end
 
+    if(!isNeo)
+	{
 		if (StoryMenuState.weekUnlocked[2] || isDebug)
 			addWeek(['Bopeebo', 'Fresh', 'Dadbattle'], 1, ['dad']);
 
@@ -86,6 +90,22 @@ class FreeplayState extends MusicBeatState
 
 		if (StoryMenuState.weekUnlocked[7] || isDebug)
 			addWeek(['Dunk', 'RAM', 'Hello-World', 'Glitcher', 'Encore'], 7, ['hex']);
+	}
+	else
+	{
+		if (StoryMenuState.weekUnlocked[2] || isDebug)
+			addWeek(['Bopeebo', 'Fresh', 'Dadbattle'], 1, ['dad']);
+
+		if (StoryMenuState.weekUnlocked[2] || isDebug)
+			addWeek(['Spookeez', 'South'], 2, ['spooky']);
+
+		if (StoryMenuState.weekUnlocked[3] || isDebug)
+			addWeek(['Pico', 'Philly', 'Blammed'], 3, ['pico']);
+
+		if (StoryMenuState.weekUnlocked[4] || isDebug)
+			addWeek(['Satin-Panties', 'High', 'Milf'], 4, ['mom']);
+	}
+		
 		// LOAD MUSIC
 
 		// LOAD CHARACTERS
@@ -99,7 +119,6 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
-			songText.x = 300;
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);

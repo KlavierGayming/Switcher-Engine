@@ -5,6 +5,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
 import Config;
 import WebViewVideo;
 
@@ -28,6 +29,9 @@ class OptimizationOptions extends MusicBeatState
 	var BACK:Bool;
 	var ACCEPT:Bool;
 
+
+	var desc:FlxText;
+
 	// stuff.
 	public var accuracyDisabled:Bool = false;
 
@@ -45,6 +49,16 @@ class OptimizationOptions extends MusicBeatState
 		menuBG.screenCenter();
 		menuBG.antialiasing = true;
 		add(menuBG);
+
+		var smol:FlxSprite = new FlxSprite(0, 750).makeGraphic(FlxG.width, 25, FlxColor.BLACK);
+		smol.alpha = 0.5;
+		add(smol);
+
+		desc = new FlxText(0, 750, 0, "", 12);
+		desc.scrollFactor.set();
+		desc.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		desc.updateHitbox();
+		add(desc);
 
 
 		grpControls = new FlxTypedGroup<Alphabet>();
@@ -119,6 +133,36 @@ class OptimizationOptions extends MusicBeatState
 					config.setnocut();
 					FlxG.resetState();
 			}
+		}
+
+		var daSelected:String = menuItems[curSelected];
+
+		switch(daSelected)
+		{
+			case "controls":
+				desc.visible = true;
+				desc.alpha = 1;
+				desc.text = 'Change your controls.';
+			case 'practice: on' | 'practice: off':
+				desc.visible = true;
+				desc.alpha = 1;
+				desc.text = 'Turn practice mode on or off. Makes you invincible.';
+			case "set fps":
+				desc.visible = true;
+				desc.alpha = 1;
+				desc.text = 'You can change your fps from 60 to 90.';
+			case "downscroll: on" | "downscroll: off":
+				desc.visible = true;
+				desc.alpha = 1;
+				desc.text = 'Turn downscroll on or off. Makes the arrows go down instead of up.';
+			case 'death counter per song' | 'death counter per week':
+				desc.visible = true;
+				desc.alpha = 1;
+				desc.text = 'Change whether the death counter resets per song or per week.';
+			case "About":
+				desc.visible = true;
+				desc.alpha = 1;
+				desc.text = 'About the android port.';
 		}
 
 		if (isSettingControl)

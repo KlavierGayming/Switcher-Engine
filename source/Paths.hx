@@ -70,6 +70,11 @@ class Paths
 		return getPath('data/$key.json', TEXT, library);
 	}
 
+	inline static public function jsonneo(key:String, ?library:String)
+	{
+		return getPath('dataneo/$key.json', TEXT, library);
+	}
+
 	static public function sound(key:String, ?library:String)
 	{
 		return getPath('sounds/$key.$SOUND_EXT', SOUND, library);
@@ -90,13 +95,13 @@ class Paths
 		return 'songs:assets/songs/${song.toLowerCase()}/Voices.$SOUND_EXT';
 	}
 
-	inline static public function instb(song:String)
+	inline static public function instneo(song:String)
 	{
-		return 'songs:assets/songs/${song.toLowerCase()}/InstBSIDE.$SOUND_EXT';
+		return 'songsneo:assets/songsneo/${song.toLowerCase()}/Inst.$SOUND_EXT';
 	}
-	inline static public function voicesb(song:String)
+	inline static public function voicesneo(song:String)
 	{
-		return 'songs:assets/songs/${song.toLowerCase()}/VoicesBSIDE.$SOUND_EXT';
+		return 'songsneo:assets/songsneo/${song.toLowerCase()}/Voices.$SOUND_EXT';
 	}
 	
 	inline static public function inst(song:String)

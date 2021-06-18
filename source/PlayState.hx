@@ -96,6 +96,7 @@ class PlayState extends MusicBeatState
 	var isNoGf:Bool = new Config().getnogf();
 	var isNoSwitch:Bool = new Config().getnoswitch();
 	var isPerWeek:Bool = new Config().getperweek();
+	var isNeo:Bool = new Config().getneo();
 
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
@@ -285,11 +286,14 @@ class PlayState extends MusicBeatState
                         {
                                 curStage = 'spooky';
 	                          halloweenLevel = true;
-
+						
+                          if (!isNeo)
 		                  var hallowTex = Paths.getSparrowAtlas('halloween_bg');
+						  else
+						  var hallowTex = Paths.getSparrowAtlas('neo/stages/halloween_bg', 'shared');
 
 	                          halloweenBG = new FlxSprite(-200, -100);
-		                  halloweenBG.frames = hallowTex;
+		                      halloweenBG.frames = hallowTex;
 	                          halloweenBG.animation.addByPrefix('idle', 'halloweem bg0');
 	                          halloweenBG.animation.addByPrefix('lightning', 'halloweem bg lightning strike', 24, false);
 	                          halloweenBG.animation.play('idle');
@@ -303,17 +307,24 @@ class PlayState extends MusicBeatState
 		          case 'pico' | 'blammed' | 'philly': 
                         {
 		                  curStage = 'philly';
+
+						  if (!isNeo)
 		                  phillyBg = new FlxSprite(0, 0).loadGraphic(Paths.image('phillyBg','shared'));
+						  else
+						  phillyBg = new FlxSprite(0, 0).loadGraphic(Paths.image('neo/stages/phillyBg', 'shared'));
+
 		                  phillyBg.antialiasing = true;
 		                  phillyBg.scrollFactor.set(0.9, 0.9);
 		                  phillyBg.active = false;
 						  if (!isNoBg)
 		                  add(phillyBg);
 
+
+						  if (!isNeo){
 						  phillyBgNeo = new FlxSprite(0, 0).loadGraphic(Paths.image('phillyBgNeo','shared'));
 		                  phillyBgNeo.antialiasing = true;
 		                  phillyBgNeo.scrollFactor.set(0.9, 0.9);
-		                  phillyBgNeo.active = false;
+		                  phillyBgNeo.active = false; }
 
 		          }
 		          case 'milf' | 'satin-panties' | 'high':
@@ -321,13 +332,19 @@ class PlayState extends MusicBeatState
 		                  curStage = 'limo';
 		                  defaultCamZoom = 0.90;
 
+						  if (!isNeo)
 		                  var skyBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic(Paths.image('limo/limoSunset'));
+						  else
+						  var skyBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic(Paths.image('neo/stages/limoSunset', 'shared'));
 		                  skyBG.scrollFactor.set(0.1, 0.1);
 						  if (!isNoBg)
 		                  add(skyBG);
 
 		                  var bgLimo:FlxSprite = new FlxSprite(-200, 480);
+						  if (!isNeo)
 		                  bgLimo.frames = Paths.getSparrowAtlas('limo/bgLimo');
+						  else
+						  bgLimo.frames = Paths.getSparrowAtlas('neo/stages/bgLimo', 'shared');
 		                  bgLimo.animation.addByPrefix('drive', "background limo pink", 24);
 		                  bgLimo.animation.play('drive');
 		                  bgLimo.scrollFactor.set(0.4, 0.4);
@@ -345,7 +362,10 @@ class PlayState extends MusicBeatState
 		                          grpLimoDancers.add(dancer);
 		                  }
 
+						  if (!isNeo)
 		                  var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic(Paths.image('limo/limoOverlay'));
+						  else
+						  var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic(Paths.image('neo/stages/limoOverlay', 'shared'));
 		                  overlayShit.alpha = 0.5;
 		                  // add(overlayShit);
 
@@ -800,27 +820,39 @@ class PlayState extends MusicBeatState
 		          {
 		                  defaultCamZoom = 0.9;
 		                  curStage = 'stage';
+						  if (!isNeo)
 		                  var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
+						  else
+						  var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('neo/stages/stageback', 'shared'));
 		                  bg.antialiasing = true;
 		                  bg.scrollFactor.set(0.9, 0.9);
 		                  bg.active = false;
+						  if (!isNoBg)
 		                  add(bg);
 
+						  if (!isNeo)
 		                  var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
+						  else
+						  var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('neo/stages/stagefront'));
 		                  stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 		                  stageFront.updateHitbox();
 		                  stageFront.antialiasing = true;
 		                  stageFront.scrollFactor.set(0.9, 0.9);
 		                  stageFront.active = false;
+						  if (!isNoBg)
 		                  add(stageFront);
 
+						  if (!isNeo)
 		                  var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
+						  else
+						  var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('neo/stages/stagecurtains'));
 		                  stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 		                  stageCurtains.updateHitbox();
 		                  stageCurtains.antialiasing = true;
 		                  stageCurtains.scrollFactor.set(1.3, 1.3);
 		                  stageCurtains.active = false;
 
+						  if (!isNoBg)
 		                  add(stageCurtains);
 		          }
               }
@@ -2963,6 +2995,7 @@ class PlayState extends MusicBeatState
 		}
 	}
 	}
+	
 	var lightningStrikeBeat:Int = 0;
 	var lightningOffset:Int = 8;
 
