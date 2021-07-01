@@ -23,9 +23,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 	var isNeo:Bool = new Config().getneo();
 
-	if (!isNeo)
-	{
-		var weekData:Array<Dynamic> = [
+	var weekData:Array<Dynamic> = [
 			['Tutorial'],
 			['Bopeebo', 'Fresh', 'Dadbattle'],
 			['Spookeez', 'South'],
@@ -36,24 +34,13 @@ class StoryMenuState extends MusicBeatState
 			['Ugh', 'Guns', 'Stress'],
 			['Dunk', 'RAM', 'Hello-World', 'Glitcher']
 		];
-	}
-	else
-	{
-		var weekData:Array<Dynamic> = [
-			['Tutorial'],
-			['Bopeebo', 'Fresh', 'Dadbattle'],
-			['Spookeez', 'South', "Monster"],
-			['Pico', 'Philly', "Blammed"],
-			['Satin-Panties', "High", "Milf"]
-		];
-	}
+
+	
+
 
 	var curDifficulty:Int = 1;
 
-	if (!isNeo)
 		public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true];
-	else
-		public static var weekUnlocked:Array<Bool> = [true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['dad', 'bf', 'gf'],
@@ -97,6 +84,16 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
+		if (isNeo)
+		{
+			weekData = [
+				["Tutorial"],
+				['Bopeebo', 'Fresh', 'Dadbattle'],
+				['Spookeez', 'South'],
+				['Pico', 'Philly', 'Blammed'],
+				['Satin-Panties', 'High', 'Milf']
+			];
+		}
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 

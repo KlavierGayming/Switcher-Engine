@@ -44,10 +44,12 @@ class Song
 	{
 		var isNeo:Bool = new Config().getneo();
 		
+		var rawJson;
+
 		if (!isNeo)
-		var rawJson = Assets.getText(Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
+			rawJson = Assets.getText(Paths.json(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
 		else
-		var rawJson = Assets.getText(Paths.jsonneo(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
+			rawJson = Assets.getText(Paths.jsonneo(folder.toLowerCase() + '/' + jsonInput.toLowerCase())).trim();
 
 		while (!rawJson.endsWith("}"))
 		{

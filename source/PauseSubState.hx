@@ -13,6 +13,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import PlayState;
+import flixel.FlxState;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -124,6 +125,9 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.resetState();
 				case "Charting Menu":
 					FlxG.switchState(new ChartingState());
+				case 'Change Diffic':
+					FlxG.resetState();
+					PlayState.isChangeDiffic = true;
 				case "Exit to menu":
 					FlxG.switchState(new MainMenuState());
 					PlayState.deathCount = 0;

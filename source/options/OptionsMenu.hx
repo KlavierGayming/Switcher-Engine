@@ -22,7 +22,7 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = [#if mobile 'controls', #end 'set fps', 'practice: off', 'death counter per song', 'Neo remixes: Off', 'About'];
+	var menuItems:Array<String> = [#if mobile 'controls', #end 'set fps', 'practice: off', 'death counter per song', /*'neo remixes: off' ,DELAYED AGAIN CUZ IM SPTUDI*/ 'song pos bar: off', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -82,6 +82,11 @@ class OptionsMenu extends MusicBeatState
 			menuItems[menuItems.indexOf('neo remixes: off')] = 'neo remixes: on';
 		}
 
+		if (FlxG.save.data.songposbar)
+		{
+			menuItems[menuItems.indexOf('song pos bar: off')] = 'song pos bar: on';
+		}
+
 		for (i in 0...menuItems.length)
 		{ 
 			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
@@ -136,6 +141,9 @@ class OptionsMenu extends MusicBeatState
 				case 'neo remixes: on' | 'neo remixes: off':
 					config.setneo();
 					FlxG.resetState();
+				case 'song pos bar: off' | 'song pos bar: on':
+					FlxG.save.data.songposbar = !FlxG.save.data.songposbar;
+					FlxG.resetState();
 			}
 		}
 
@@ -163,6 +171,10 @@ class OptionsMenu extends MusicBeatState
 				desc.visible = true;
 				desc.alpha = 1;
 				desc.text = 'Change whether the death counter resets per song or per week.';
+			case 'song pos bar: off' | 'song pos bar: on':
+				desc.visible = true;
+				desc.alpha = 1;
+				desc.text = 'You can turn on a bar that shows your song position';
 			case "About":
 				desc.visible = true;
 				desc.alpha = 1;

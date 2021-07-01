@@ -57,6 +57,7 @@ class PlayState extends MusicBeatState
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
 	public static var deathCount:Int = 0;
+	public static var isChangeDiffic:Bool = false;
 
 	var halloweenLevel:Bool = false;
 
@@ -146,6 +147,9 @@ class PlayState extends MusicBeatState
 
 	// more funi but this time it's camHUD shit lol!
 	var funiRating:FlxSprite;
+	var songPosBar:FlxBar;
+    var songPosBG:FlxSprite;
+	var songName:FlxText;
 	// end of the funi 2 :pensive:
 
 	//tankbop shit
@@ -181,6 +185,8 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+
+
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -287,13 +293,10 @@ class PlayState extends MusicBeatState
                                 curStage = 'spooky';
 	                          halloweenLevel = true;
 						
-                          if (!isNeo)
 		                  var hallowTex = Paths.getSparrowAtlas('halloween_bg');
-						  else
-						  var hallowTex = Paths.getSparrowAtlas('neo/stages/halloween_bg', 'shared');
 
 	                          halloweenBG = new FlxSprite(-200, -100);
-		                      halloweenBG.frames = hallowTex;
+		                      halloweenBG.frames = if (isNeo){ Paths.getSparrowAtlas('neo/stages/halloween_bg', 'shared'); } else { hallowTex; }
 	                          halloweenBG.animation.addByPrefix('idle', 'halloweem bg0');
 	                          halloweenBG.animation.addByPrefix('lightning', 'halloweem bg lightning strike', 24, false);
 	                          halloweenBG.animation.play('idle');
@@ -311,8 +314,7 @@ class PlayState extends MusicBeatState
 						  if (!isNeo)
 		                  phillyBg = new FlxSprite(0, 0).loadGraphic(Paths.image('phillyBg','shared'));
 						  else
-						  phillyBg = new FlxSprite(0, 0).loadGraphic(Paths.image('neo/stages/phillyBg', 'shared'));
-
+						  phillyBg = new FlxSprite(0, 0).loadGraphic(Paths.image('neo/stages/phillyBg','shared'));
 		                  phillyBg.antialiasing = true;
 		                  phillyBg.scrollFactor.set(0.9, 0.9);
 		                  phillyBg.active = false;
@@ -320,11 +322,11 @@ class PlayState extends MusicBeatState
 		                  add(phillyBg);
 
 
-						  if (!isNeo){
+
 						  phillyBgNeo = new FlxSprite(0, 0).loadGraphic(Paths.image('phillyBgNeo','shared'));
 		                  phillyBgNeo.antialiasing = true;
 		                  phillyBgNeo.scrollFactor.set(0.9, 0.9);
-		                  phillyBgNeo.active = false; }
+		                  phillyBgNeo.active = false;
 
 		          }
 		          case 'milf' | 'satin-panties' | 'high':
@@ -332,25 +334,26 @@ class PlayState extends MusicBeatState
 		                  curStage = 'limo';
 		                  defaultCamZoom = 0.90;
 
+
+		                  var skyBG:FlxSprite;
 						  if (!isNeo)
-		                  var skyBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic(Paths.image('limo/limoSunset'));
+						  skyBG = new FlxSprite(-120, -50).loadGraphic(Paths.image('limo/limoSunset'));
 						  else
-						  var skyBG:FlxSprite = new FlxSprite(-120, -50).loadGraphic(Paths.image('neo/stages/limoSunset', 'shared'));
+						  skyBG = new FlxSprite(-120, -50).loadGraphic(Paths.image('neo/stages/limoSunset','shared'));
 		                  skyBG.scrollFactor.set(0.1, 0.1);
 						  if (!isNoBg)
 		                  add(skyBG);
 
+
+						  
 		                  var bgLimo:FlxSprite = new FlxSprite(-200, 480);
-						  if (!isNeo)
 		                  bgLimo.frames = Paths.getSparrowAtlas('limo/bgLimo');
-						  else
-						  bgLimo.frames = Paths.getSparrowAtlas('neo/stages/bgLimo', 'shared');
-		                  bgLimo.animation.addByPrefix('drive', "background limo pink", 24);
-		                  bgLimo.animation.play('drive');
-		                  bgLimo.scrollFactor.set(0.4, 0.4);
 						  if (!isNoBg)
 		                  add(bgLimo);
+						  else if (isNeo) {}
 
+						if (!isNeo)
+						{
 		                  grpLimoDancers = new FlxTypedGroup<BackgroundDancer>();
 						  if (!isNoBg)
 		                  add(grpLimoDancers);
@@ -361,11 +364,15 @@ class PlayState extends MusicBeatState
 		                          dancer.scrollFactor.set(0.4, 0.4);
 		                          grpLimoDancers.add(dancer);
 		                  }
+						}
+						
 
+
+		                  var overlayShit:FlxSprite;
 						  if (!isNeo)
-		                  var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic(Paths.image('limo/limoOverlay'));
+						  overlayShit = new FlxSprite(-500, -600).loadGraphic(Paths.image('limo/limoOverlay'));
 						  else
-						  var overlayShit:FlxSprite = new FlxSprite(-500, -600).loadGraphic(Paths.image('neo/stages/limoOverlay', 'shared'));
+						  overlayShit = new FlxSprite(-500, -600).loadGraphic(Paths.image('neo/stages/limoOverlay', 'shared'));
 		                  overlayShit.alpha = 0.5;
 		                  // add(overlayShit);
 
@@ -378,7 +385,7 @@ class PlayState extends MusicBeatState
 		                  var limoTex = Paths.getSparrowAtlas('limo/limoDrive');
 
 		                  limo = new FlxSprite(-120, 550);
-		                  limo.frames = limoTex;
+		                  limo.frames = if (!isNeo) {limoTex;} else {Paths.getSparrowAtlas('neo/stages/limoDrive', 'shared');}
 		                  limo.animation.addByPrefix('drive', "Limo stage", 24);
 		                  limo.animation.play('drive');
 		                  limo.antialiasing = true;
@@ -646,29 +653,42 @@ class PlayState extends MusicBeatState
 					if (!isNoBg)
 					add(ground);
 
+
 					tankBop1 = new FlxSprite(-500,650);
 					tankBop1.frames = Paths.getSparrowAtlas('tank0','week7');
 					tankBop1.animation.addByPrefix('bop', 'fg tankhead far right instance 1', 24);
-					
+					tankBop1.scrollFactor.set(1.7, 1.5);
+					tankBop1.antialiasing = true;
+	
 					tankBop2 = new FlxSprite(-300,750);
 					tankBop2.frames = Paths.getSparrowAtlas('tank1','week7');
 					tankBop2.animation.addByPrefix('bop','fg tankhead 5 instance 1', 24);
-
+					tankBop2.scrollFactor.set(2.0, 0.2);
+					tankBop2.antialiasing = true;
+	
 					tankBop3 = new FlxSprite(450,940);
 					tankBop3.frames = Paths.getSparrowAtlas('tank2','week7');
 					tankBop3.animation.addByPrefix('bop','foreground man 3 instance 1', 24);
-
+					tankBop3.scrollFactor.set(1.5, 1.5);
+					tankBop3.antialiasing = true;
+	
 					tankBop4 = new FlxSprite(1300,1200);
 					tankBop4.frames = Paths.getSparrowAtlas('tank3','week7');
 					tankBop4.animation.addByPrefix('bop','fg tankhead 4 instance 1', 24);
-
+					tankBop4.scrollFactor.set(3.5, 2.5);
+					tankBop4.antialiasing = true;
+	
 					tankBop5 = new FlxSprite(1300,900);
 					tankBop5.frames = Paths.getSparrowAtlas('tank4','week7');
 					tankBop5.animation.addByPrefix('bop','fg tankman bobbin 3 instance 1', 24);
-					
+					tankBop5.scrollFactor.set(1.5, 1.5);
+					tankBop5.antialiasing = true;
+	
 					tankBop6 = new FlxSprite(1620,700);
-					tankBop6.frames = Paths.getSparrowAtlas('tank5','week7');
+					tankBop6.frames = Paths.getSparrowAtlas('tank5', 'week7');
 					tankBop6.animation.addByPrefix('bop','fg tankhead far right instance 1', 24);
+					tankBop6.scrollFactor.set(1.5, 1.5);
+					tankBop6.antialiasing = true;
 				  }
 				  case 'stress':
 				  {
@@ -706,30 +726,42 @@ class PlayState extends MusicBeatState
 					  var ground:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('tankGround','week7'));
 					  if (!isNoBg)
 					  add(ground);
-
+					  
 					  tankBop1 = new FlxSprite(-500,650);
 					  tankBop1.frames = Paths.getSparrowAtlas('tank0','week7');
 					  tankBop1.animation.addByPrefix('bop', 'fg tankhead far right instance 1', 24);
-					  
+					  tankBop1.scrollFactor.set(1.7, 1.5);
+					  tankBop1.antialiasing = true;
+	  
 					  tankBop2 = new FlxSprite(-300,750);
 					  tankBop2.frames = Paths.getSparrowAtlas('tank1','week7');
 					  tankBop2.animation.addByPrefix('bop','fg tankhead 5 instance 1', 24);
-  
+					  tankBop2.scrollFactor.set(2.0, 0.2);
+					  tankBop2.antialiasing = true;
+	  
 					  tankBop3 = new FlxSprite(450,940);
 					  tankBop3.frames = Paths.getSparrowAtlas('tank2','week7');
 					  tankBop3.animation.addByPrefix('bop','foreground man 3 instance 1', 24);
-  
+					  tankBop3.scrollFactor.set(1.5, 1.5);
+					  tankBop3.antialiasing = true;
+	  
 					  tankBop4 = new FlxSprite(1300,1200);
 					  tankBop4.frames = Paths.getSparrowAtlas('tank3','week7');
 					  tankBop4.animation.addByPrefix('bop','fg tankhead 4 instance 1', 24);
-  
+					  tankBop4.scrollFactor.set(3.5, 2.5);
+					  tankBop4.antialiasing = true;
+	  
 					  tankBop5 = new FlxSprite(1300,900);
 					  tankBop5.frames = Paths.getSparrowAtlas('tank4','week7');
 					  tankBop5.animation.addByPrefix('bop','fg tankman bobbin 3 instance 1', 24);
-					  
+					  tankBop5.scrollFactor.set(1.5, 1.5);
+					  tankBop5.antialiasing = true;
+	  
 					  tankBop6 = new FlxSprite(1620,700);
-					  tankBop6.frames = Paths.getSparrowAtlas('tank5','week7');
+					  tankBop6.frames = Paths.getSparrowAtlas('tank5', 'week7');
 					  tankBop6.animation.addByPrefix('bop','fg tankhead far right instance 1', 24);
+					  tankBop6.scrollFactor.set(1.5, 1.5);
+					  tankBop6.antialiasing = true;
 				  }
 				  case 'dunk' | 'encore':
 				  {
@@ -820,20 +852,22 @@ class PlayState extends MusicBeatState
 		          {
 		                  defaultCamZoom = 0.9;
 		                  curStage = 'stage';
+		                  var bg:FlxSprite;
 						  if (!isNeo)
-		                  var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
+						  bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
 						  else
-						  var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('neo/stages/stageback', 'shared'));
+				          bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('neo/stages/stageback'));
 		                  bg.antialiasing = true;
 		                  bg.scrollFactor.set(0.9, 0.9);
 		                  bg.active = false;
 						  if (!isNoBg)
 		                  add(bg);
 
-						  if (!isNeo)
-		                  var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
+		                  var stageFront:FlxSprite;
+						  if (isNeo)
+						  stageFront = new FlxSprite(-650, 600).loadGraphic(Paths.image('neo/stages/stagefront'));
 						  else
-						  var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('neo/stages/stagefront'));
+						  stageFront = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
 		                  stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 		                  stageFront.updateHitbox();
 		                  stageFront.antialiasing = true;
@@ -841,11 +875,12 @@ class PlayState extends MusicBeatState
 		                  stageFront.active = false;
 						  if (!isNoBg)
 		                  add(stageFront);
-
+						  
+		                  var stageCurtains:FlxSprite;
 						  if (!isNeo)
-		                  var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
+						  stageCurtains = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
 						  else
-						  var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('neo/stages/stagecurtains'));
+						  stageCurtains = new FlxSprite(-500, -300).loadGraphic(Paths.image('neo/stages/stagecurtains'));
 		                  stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 		                  stageCurtains.updateHitbox();
 		                  stageCurtains.antialiasing = true;
@@ -1016,6 +1051,8 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+		
+
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;
 		// doof.y = FlxG.height * 0.5;
@@ -1075,6 +1112,34 @@ class PlayState extends MusicBeatState
 		add(healthBarBG);
 		}
 
+		songLength = FlxG.sound.music.length;
+
+		if (FlxG.save.data.songposbar)
+			{
+				songPosBG = new FlxSprite(0, 10).loadGraphic(Paths.image('healthBar'));
+					songPosBG.y = FlxG.height * 0.9 + 45; 
+				songPosBG.screenCenter(X);
+				songPosBG.scrollFactor.set();
+				add(songPosBG);
+	
+				songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), this,
+					'songPositionBar', 0, songLength - 1000);
+				songPosBar.numDivisions = 1000;
+				songPosBar.scrollFactor.set();
+				songPosBar.createFilledBar(0xFF666666, 0xFF12a13a);
+				add(songPosBar);
+	
+				songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - 20,songPosBG.y,0,SONG.song.toUpperCase(), 16);
+					songName.y -= 3;
+				songName.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+				songName.scrollFactor.set();
+				add(songName);
+	
+				songPosBG.cameras = [camHUD];
+				songPosBar.cameras = [camHUD];
+				songName.cameras = [camHUD];
+			}
+
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
@@ -1090,6 +1155,8 @@ class PlayState extends MusicBeatState
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
+
+
 
 		funiRating = new FlxSprite(1000, 550);
 		funiRating.frames = Paths.getSparrowAtlas('ratings','shared');
@@ -1899,6 +1966,15 @@ class PlayState extends MusicBeatState
 			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
 			#end
 		}
+
+		if (FlxG.keys.justPressed.H && (startedCountdown && canPause))
+			{
+				persistentUpdate = false;
+				persistentDraw = true;
+				paused = true;
+
+				openSubState(new ChangeDifficSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			}
 
 		if (FlxG.keys.justPressed.SEVEN)
 		{
@@ -2951,7 +3027,7 @@ class PlayState extends MusicBeatState
 	    }
 
 	
-	if (!isNoBg || !isNoSwitch)
+	if (!isNoBg)
 	{
 		if (SONG.song.toLowerCase() == 'glitcher')
 		{
@@ -2994,6 +3070,24 @@ class PlayState extends MusicBeatState
 			}
 		}
 	}
+	else if (!isNoSwitch) {}
+	else if (!isNeo) {}
+	
+
+	if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
+		{
+			if (curStep == 59 || curStep == 443 || curStep == 523 || curStep == 827)
+			{
+				dad.addOffset("singUP", 45, 0);
+				
+				dad.animation.getByName('singUP').frames = dad.animation.getByName('ughAnim').frames;
+			}
+			if (curStep == 64 || curStep == 448 || curStep == 528 || curStep == 832)
+			{
+				dad.addOffset("singUP", 24, 56);
+				dad.animation.getByName('singUP').frames = dad.animation.getByName('oldSingUP').frames;
+			}
+		}
 	}
 	
 	var lightningStrikeBeat:Int = 0;
