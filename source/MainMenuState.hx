@@ -38,6 +38,8 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 
+	public static var switcherEngineVer:String = "1.0";
+	public static var seBetaBuild:String = "";
 	//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaAA
 	var charRandom:Int = FlxG.random.int(0, 1);
 	var charName:String = "";
@@ -58,6 +60,12 @@ class MainMenuState extends MusicBeatState
 		}
 
 		persistentUpdate = persistentDraw = true;
+		
+		#if beta
+		seBetaBuild = "Betatest";
+		#else
+		seBetaBuild = "";
+		#end
 
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('bgA'));
 		bg.scrollFactor.x = 0;

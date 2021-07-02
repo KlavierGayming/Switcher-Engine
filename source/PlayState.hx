@@ -56,6 +56,7 @@ class PlayState extends MusicBeatState
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];
 	public static var storyDifficulty:Int = 1;
+	var difficStr:String = "Easy";
 	public static var deathCount:Int = 0;
 	public static var isChangeDiffic:Bool = false;
 
@@ -90,7 +91,13 @@ class PlayState extends MusicBeatState
 	private var health:Float = 1;
 	private var combo:Int = 0;
 	private var misses:Int = 0;
-	private var accuracy:Int = 0;
+	private var accuracy:Float = 100;
+	private var rating:String = "S";
+	private var ratingplus:String = "(MFC)";
+	private var goods:Int = 0;
+	private var sicks:Int = 0;
+	private var bads:Int = 0;
+	private var shits:Int = 0;
 	private var notehit:Int = 0;
 
 	var isNoBg:Bool = new Config().getnobg();
@@ -101,6 +108,7 @@ class PlayState extends MusicBeatState
 
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
+	private var songPositionBar:Float = 0;
 
 	private var generatedMusic:Bool = false;
 	private var startingSong:Bool = false;
@@ -133,6 +141,7 @@ class PlayState extends MusicBeatState
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
+	var songTxt:FlxText;
 
 
     // me when funi
@@ -242,6 +251,16 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('hello-world/hexIsGaming'));
 			case 'glitcher':
 				dialogue = CoolUtil.coolTextFile(Paths.txt('glitcher/hexIsGaming'));
+		}
+
+		switch (storyDifficulty)
+	    {
+			case 0:
+				difficStr = "Easy";
+			case 1:
+				difficStr = "Normal";
+			case 2:
+			    difficStr = "hard";
 		}
 
 		#if desktop
@@ -1123,7 +1142,7 @@ class PlayState extends MusicBeatState
 				add(songPosBG);
 	
 				songPosBar = new FlxBar(songPosBG.x + 4, songPosBG.y + 4, LEFT_TO_RIGHT, Std.int(songPosBG.width - 8), Std.int(songPosBG.height - 8), this,
-					'songPositionBar', 0, songLength - 1000);
+					'songPositionBar', -4, songLength - 1000);
 				songPosBar.numDivisions = 1000;
 				songPosBar.scrollFactor.set();
 				songPosBar.createFilledBar(0xFF666666, 0xFF12a13a);
@@ -1151,10 +1170,17 @@ class PlayState extends MusicBeatState
 
 		scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y - 75, 0, "", 20);
 		scoreTxt.x = 0;
-		scoreTxt.y -= 100;
+		scoreTxt.y -= 10;
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
+
+		songTxt = new FlxText(FlxG.width - 300, FlxG.height - 18, 0, "", 20);
+		songTxt.text = SONG.song.toUpperCase() + " (" + difficStr.toUpperCase() + ") - Switcher Engine " + MainMenuState.switcherEngineVer + "" + MainMenuState.seBetaBuild + "";
+		songTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		songTxt.text += "\n";
+		add(songTxt);
+
 
 
 
@@ -1186,6 +1212,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.cameras = [camHUD];
 		funiRating.cameras = [camHUD];
 		doof.cameras = [camHUD];
+		songTxt.cameras = [camHUD];
 
 		#if mobileC
 			mcontrols = new Mobilecontrols();
@@ -1913,6 +1940,50 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
+	function updateInfo() {
+		// accuracy!!
+		accuracy = FlxMath.roundDecimal((notehit / (notehit + misses) * 100), 2);
+		if (Math.isNaN(accuracy))
+				{
+					accuracy = 100;
+				}
+		
+				// rating!!
+                rating = "??"; // incase it doesnt load or start idk
+				if (accuracy == 100)
+				{
+					rating = "S";
+				}
+				else if (accuracy >= 90)
+				{
+					rating = "S";
+				}
+				else if (accuracy >= 80)
+				{
+					rating = "A";
+				}
+				else if (accuracy >= 70)
+				{
+					rating = "B";
+				}
+				else if (accuracy >= 60)
+				{
+					rating = "C";
+				}
+				else if (accuracy >= 50)
+				{
+					rating = "D";
+				}
+				else if (accuracy >= 30)
+				{
+					rating = "E";
+				}
+				else
+				{
+					rating = "F";
+				}
+	}
+
 	override public function update(elapsed:Float)
 	{
 		#if !debug
@@ -1931,7 +2002,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore + "\nMisses:" + misses + "\nSong name:" + SONG.song + " (" + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + ")\nNote hits:" + notehit + "\nCombo:" + combo + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + "s\nMade by Klavier Gayming\nAAAAA";
+		scoreTxt.text = "Score:" + songScore + "\nMisses:" + misses + "\nSong name:" + SONG.song + "(" + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + ")\nNote hits:" + notehit + "\nCombo:" + combo + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + "s\nRank:"+ rating +" "+ ratingplus +"\nMade by Klavier\n";
 
 
 		if (misses <= 10 && misses != 0)
@@ -1945,6 +2016,31 @@ class PlayState extends MusicBeatState
 		if (misses >= 10 && health <= 0.5)
 		{
 			funiRating.animation.play('ded');
+		}
+
+		if (misses == 0)
+		{
+			rating = "S";
+		}
+		else if (misses <= 10 && misses != 0)
+		{
+			rating = "A";
+		}
+		else if (misses >= 10)
+		{
+			rating = "B";
+		}
+		else if (misses >= 50)
+		{
+			rating = "C";
+		}
+		else if (misses >= 75)
+		{
+			rating = "D";
+		}
+		else if (misses >= 100)
+		{
+			rating = "F";
 		}
 
 		if (FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end && (startedCountdown && canPause))
@@ -2021,36 +2117,41 @@ class PlayState extends MusicBeatState
 		#end
 
 		if (startingSong)
-		{
-			if (startedCountdown)
 			{
-				Conductor.songPosition += FlxG.elapsed * 1000;
-				if (Conductor.songPosition >= 0)
-					startSong();
-			}
-		}
-		else
-		{
-			// Conductor.songPosition = FlxG.sound.music.time;
-			Conductor.songPosition += FlxG.elapsed * 1000;
-
-			if (!paused)
-			{
-				songTime += FlxG.game.ticks - previousFrameTime;
-				previousFrameTime = FlxG.game.ticks;
-
-				// Interpolation type beat
-				if (Conductor.lastSongPos != Conductor.songPosition)
+				if (startedCountdown)
 				{
-					songTime = (songTime + Conductor.songPosition) / 2;
-					Conductor.lastSongPos = Conductor.songPosition;
-					// Conductor.songPosition += FlxG.elapsed * 1000;
-					// trace('MISSED FRAME');
+					Conductor.songPosition += FlxG.elapsed * 1000;
+					if (Conductor.songPosition >= 0)
+						startSong();
 				}
 			}
-
-			// Conductor.lastSongPos = FlxG.sound.music.time;
-		}
+			else
+			{
+				// Conductor.songPosition = FlxG.sound.music.time;
+				Conductor.songPosition += FlxG.elapsed * 1000;
+				/*@:privateAccess
+				{
+					FlxG.sound.music._channel.
+				}*/
+				songPositionBar = Conductor.songPosition;
+	
+				if (!paused)
+				{
+					songTime += FlxG.game.ticks - previousFrameTime;
+					previousFrameTime = FlxG.game.ticks;
+	
+					// Interpolation type beat
+					if (Conductor.lastSongPos != Conductor.songPosition)
+					{
+						songTime = (songTime + Conductor.songPosition) / 2;
+						Conductor.lastSongPos = Conductor.songPosition;
+						// Conductor.songPosition += FlxG.elapsed * 1000;
+						// trace('MISSED FRAME');
+					}
+				}
+	
+				// Conductor.lastSongPos = FlxG.sound.music.time;
+			}
 
 		if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null)
 		{
@@ -2423,44 +2524,57 @@ class PlayState extends MusicBeatState
 		if (noteDiff > Conductor.safeZoneOffset * 0.9)
 		{
 			daRating = 'shit';
+			shits += 1;
 			score = 50;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 		{
 			daRating = 'bad';
+			bads += 1;
 			score = 100;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 		{
 			daRating = 'good';
+			shits += 1;
 			score = 200;
+		}
+		else if (noteDiff > Conductor.safeZoneOffset * 0.1 || noteDiff == 0)
+		{
+			daRating = 'sick';
+			sicks += 1;
 		}
 
 
 
 		songScore += score;
 
-		/*if (daRating == 'sick' || noteDiff > Conductor.safeZoneOffset * 0.1)
+		if (bads == 0 && shits == 0 && goods == 0 && misses == 0)
 		{
-			accuracy += 15;
+			ratingplus = "(MFC)";
 		}
-		if (daRating == 'good' || noteDiff > Conductor.safeZoneOffset * 0.4)
+		else if (goods >= 1 && bads == 0 && shits == 0 && misses == 0)
 		{
-			accuracy += 7;
+			ratingplus = "(GFC)";
 		}
-		if (daRating == 'bad' || noteDiff > Conductor.safeZoneOffset * 0.74)
+		else if (bads >= 1 && misses == 0 || shits >= 1 && misses == 0)
 		{
-			accuracy -= 7;
+			ratingplus = "(FC)";
 		}
-		if (daRating == 'shit' || noteDiff > Conductor.safeZoneOffset * 0.9)
+		else if (misses <= 10 && misses != 0)
 		{
-			accuracy -= 15;
+			ratingplus = "(SBCD)";
+		}
+		else if (misses < 100)
+		{
+			ratingplus = "(Clear)";
+		}
+		else if (misses > 100)
+		{
+			ratingplus = "(Get a bit better)";
 		}
 
-		if (accuracy >= 100)
-		{
-			accuracy = 100;
-		}*/
+	    
 
 		/* if (combo > 60)
 				daRating = 'sick';

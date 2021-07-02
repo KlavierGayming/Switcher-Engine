@@ -21,7 +21,7 @@ class OtherState extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['credits', 'Mods Story', 'Mods Freeplay', 'Options', 'Optimization Options'];
+	var menuItems:Array<String> = ['credits', 'Work In Progress', 'Options', 'Optimization Options'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -32,6 +32,8 @@ class OtherState extends MusicBeatState
 	var _saveconrtol:FlxSave;
 
 	var config:Config = new Config();
+
+	var ass:Bool = false;
 
 	override function create()
 	{
@@ -46,6 +48,12 @@ class OtherState extends MusicBeatState
 
 		grpControls = new FlxTypedGroup<Alphabet>();
 		add(grpControls);
+	    
+		
+		if (ass)
+		{
+			menuItems[menuItems.indexOf('Work In Progress')] = 'Please be patient';
+		}
 
 		for (i in 0...menuItems.length)
 		{ 
@@ -55,6 +63,8 @@ class OtherState extends MusicBeatState
 			grpControls.add(controlLabel);
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
+
+
 
 		#if mobileC
 		addVirtualPad(UP_DOWN, A_B);
@@ -88,6 +98,12 @@ class OtherState extends MusicBeatState
                 case 'Optimization Options':
                     FlxG.switchState(new options.OptimizationOptions());
                     trace('Optimization options menu selected');
+				case 'Custom Note Assets':
+					FlxG.switchState(new CustomNoteAsset());
+					trace('H');
+				case 'Work In Progress' | 'Please be patient':
+					ass = !ass;
+					trace('no');
 			}
 		}
 
