@@ -58,8 +58,9 @@ class OtherState extends MusicBeatState
 		for (i in 0...menuItems.length)
 		{ 
 			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
-			controlLabel.isMenuItem = true;
-			controlLabel.targetY = i;
+			controlLabel.screenCenter(X);
+			//controlLabel.isMenuItem = true;
+			//controlLabel.targetY = i;
 			grpControls.add(controlLabel);
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
