@@ -87,6 +87,11 @@ class OptionsMenu extends MusicBeatState
 			menuItems[menuItems.indexOf('song pos bar: off')] = 'song pos bar: on';
 		}
 
+		if (FlxG.save.data.noend)
+		{
+			menuItems[menuItems.indexOf('end stat screen: on')] = 'end stat screen: off';
+		}
+
 		for (i in 0...menuItems.length)
 		{ 
 			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
@@ -143,6 +148,9 @@ class OptionsMenu extends MusicBeatState
 					FlxG.resetState();
 				case 'song pos bar: off' | 'song pos bar: on':
 					FlxG.save.data.songposbar = !FlxG.save.data.songposbar;
+					FlxG.resetState();
+				case 'end stat screen: on' | 'end stat screen: off':
+					FlxG.save.data.noend = !FlxG.save.data.noend;
 					FlxG.resetState();
 			}
 		}

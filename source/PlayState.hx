@@ -45,6 +45,7 @@ import options.OptionsMenu;
 #if mobileC
 import ui.Mobilecontrols;
 #end
+import Rank;
 
 using StringTools;
 
@@ -90,15 +91,15 @@ class PlayState extends MusicBeatState
 	private var gfSpeed:Int = 1;
 	private var health:Float = 1;
 	private var combo:Int = 0;
-	private var misses:Int = 0;
-	private var accuracy:Float = 100;
-	private var rating:String = "S";
-	private var ratingplus:String = "(MFC)";
-	private var goods:Int = 0;
-	private var sicks:Int = 0;
-	private var bads:Int = 0;
-	private var shits:Int = 0;
-	private var notehit:Int = 0;
+	public var misses:Int = 0;
+	public var accuracy:Float = 100;
+	public var rating:String = "S";
+	public var ratingplus:String = "(MFC)";
+	public var goods:Int = 0;
+	public var sicks:Int = 0;
+	public var bads:Int = 0;
+	public var shits:Int = 0;
+	public var notehit:Int = 0;
 
 	var isNoBg:Bool = new Config().getnobg();
 	var isNoGf:Bool = new Config().getnogf();
@@ -142,6 +143,7 @@ class PlayState extends MusicBeatState
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
 	var songTxt:FlxText;
+	var rank:Rank;
 
 
     // me when funi
@@ -183,10 +185,10 @@ class PlayState extends MusicBeatState
 	// Discord RPC variables
 	var storyDifficultyText:String = "";
 	var iconRPC:String = "";
-	var songLength:Float = 0;
 	var detailsText:String = "";
 	var detailsPausedText:String = "";
 	#end
+	var songLength:Float = 0; // this gets moved out of there cuz of shit
 
 	#if mobileC
 	var mcontrols:Mobilecontrols; 
@@ -1175,7 +1177,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
-		songTxt = new FlxText(FlxG.width - 300, FlxG.height - 18, 0, "", 20);
+		songTxt = new FlxText(FlxG.width - 350, FlxG.height - 18, 0, "", 20);
 		songTxt.text = SONG.song.toUpperCase() + " (" + difficStr.toUpperCase() + ") - Switcher Engine " + MainMenuState.switcherEngineVer + "" + MainMenuState.seBetaBuild + "";
 		songTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		songTxt.text += "\n";
@@ -1213,6 +1215,8 @@ class PlayState extends MusicBeatState
 		funiRating.cameras = [camHUD];
 		doof.cameras = [camHUD];
 		songTxt.cameras = [camHUD];
+
+		rank = new Rank();
 
 		#if mobileC
 			mcontrols = new Mobilecontrols();
@@ -1367,56 +1371,45 @@ class PlayState extends MusicBeatState
 		add(boyfriend);
 		add(dad);
 	}
-	function ughIntro():Void
-	{
-		var funiCutscene:FlxSprite = new FlxSprite();
-		funiCutscene.frames = Paths.getSparrowAtlas('ugh_cutscene', 'week7');
-		funiCutscene.animation.addByPrefix('arse', 'ugh cutscene instance 1', 10, false);
-		funiCutscene.scrollFactor.set();
-		funiCutscene.setGraphicSize(Std.int(funiCutscene.width * 2));
-		funiCutscene.updateHitbox();
-		funiCutscene.screenCenter();
-		add(funiCutscene);
-
-
-		inCutscene = true;
-		FlxG.sound.play(Paths.sound('ughCutscene','week7'));
-		camHUD.visible = false;
-		funiCutscene.animation.play('arse');
-        FlxG.camera.zoom = 1.1;
-
-		new FlxTimer().start(12, function(swagTimer:FlxTimer)
+	function ughIntro()
 		{
-			remove(funiCutscene);
-			camHUD.visible = true;
-			startCountdown();
-		});
-	}
-	function gunsIntro():Void
-	{
-		var funiCutscene:FlxSprite = new FlxSprite();
-		funiCutscene.frames = Paths.getSparrowAtlas('guns_cutscene', 'week7');
-		funiCutscene.animation.addByPrefix('arse', 'guns cutscene instance 1', 10, false);
-		funiCutscene.scrollFactor.set();
-		funiCutscene.setGraphicSize(Std.int(funiCutscene.width * 2));
-		funiCutscene.updateHitbox();
-		funiCutscene.screenCenter();
-		add(funiCutscene);
-	
-		
-		inCutscene = true;
-		FlxG.sound.play(Paths.sound('gunsCutscene','week7'));
-		camHUD.visible = false;
-		funiCutscene.animation.play('arse');
-		FlxG.camera.zoom = 1.1;
-	
-		new FlxTimer().start(12, function(swagTimer:FlxTimer)
+			var video = new VideoPlayer(0, 0, 'videos/ughcutscene.webm');
+			video.finishCallback = () -> {
+				remove(video);
+				startCountdown();
+			}
+			video.ownCamera();
+			video.setGraphicSize(Std.int(video.width * 2));
+			video.updateHitbox();
+			add(video);
+			video.play();
+		}
+		function gunsIntro()
 		{
-			remove(funiCutscene);
-			camHUD.visible = true;
-			startCountdown();
-		});
-	}
+			var video = new VideoPlayer(0, 0, 'videos/gunscutscene.webm');
+			video.finishCallback = () -> {
+				remove(video);
+				startCountdown();
+			}
+			video.ownCamera();
+			video.setGraphicSize(Std.int(video.width * 2));
+			video.updateHitbox();
+			add(video);
+			video.play();
+		}
+		function stressIntro()
+		{
+			var video = new VideoPlayer(0, 0, 'videos/stresscutscene.webm');
+			video.finishCallback = () -> {
+				remove(video);
+				startCountdown();
+			}
+			video.ownCamera();
+			video.setGraphicSize(Std.int(video.width * 2));
+			video.updateHitbox();
+			add(video);
+			video.play();
+		}
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
 		var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
@@ -1986,6 +1979,46 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		accuracy = FlxMath.roundDecimal((notehit / (notehit + misses) * 100), 2);
+		if (Math.isNaN(accuracy))
+			{
+				accuracy = 100;
+			}
+
+			rating = "??"; // incase it doesnt load or start idk
+			if (accuracy == 100)
+			{
+				rating = "S";
+			}
+			else if (accuracy >= 90)
+			{
+				rating = "S";
+			}
+			else if (accuracy >= 80)
+			{
+				rating = "A";
+			}
+			else if (accuracy >= 70)
+			{
+				rating = "B";
+			}
+			else if (accuracy >= 60)
+			{
+				rating = "C";
+			}
+			else if (accuracy >= 50)
+			{
+				rating = "D";
+			}
+			else if (accuracy >= 30)
+			{
+				rating = "E";
+			}
+			else
+			{
+				rating = "F";
+			}
+
 		#if !debug
 		perfectMode = false;
 		#end
@@ -2002,7 +2035,14 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore + "\nMisses:" + misses + "\nSong name:" + SONG.song + "(" + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + ")\nNote hits:" + notehit + "\nCombo:" + combo + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + "s\nRank:"+ rating +" "+ ratingplus +"\nMade by Klavier\n";
+		scoreTxt.text = "Score:" + songScore
+		 + "\nMisses:" + misses 
+		 + "\nNote hits:" + notehit 
+		 + "\nCombo:" + combo 
+		 + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) 
+		 + "s\nAccuracy: " + accuracy
+		 + "%\nRank: "+ rating + " " + ratingplus 
+		 + "\nMade by Klavier\n";
 
 
 		if (misses <= 10 && misses != 0)
@@ -2018,31 +2058,7 @@ class PlayState extends MusicBeatState
 			funiRating.animation.play('ded');
 		}
 
-		if (misses == 0)
-		{
-			rating = "S";
-		}
-		else if (misses <= 10 && misses != 0)
-		{
-			rating = "A";
-		}
-		else if (misses >= 10)
-		{
-			rating = "B";
-		}
-		else if (misses >= 50)
-		{
-			rating = "C";
-		}
-		else if (misses >= 75)
-		{
-			rating = "D";
-		}
-		else if (misses >= 100)
-		{
-			rating = "F";
-		}
-
+		
 		if (FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end && (startedCountdown && canPause))
 		{
 			persistentUpdate = false;
@@ -2412,7 +2428,7 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	function endSong():Void
+	public function endSong():Void
 	{
 		canPause = false;
 		FlxG.sound.music.volume = 0;
@@ -2437,7 +2453,10 @@ class PlayState extends MusicBeatState
 				transIn = FlxTransitionableState.defaultTransIn;
 				transOut = FlxTransitionableState.defaultTransOut;
 
-				FlxG.switchState(new StoryMenuState());
+				//if (FlxG.save.data.noend) delayed :((((
+					FlxG.switchState(new StoryMenuState());
+				//else
+				//	openSubState(new EndSongSubstate());
 
 				// if ()
 				StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
@@ -2496,7 +2515,11 @@ class PlayState extends MusicBeatState
 		else
 		{
 			trace('WENT BACK TO FREEPLAY??');
-			FlxG.switchState(new FreeplayState());
+			//if (FlxG.save.data.noend)
+				FlxG.switchState(new FreeplayState());
+			//else
+				openSubState(new EndSongSubstate());
+
 			deathCount = 0;
 		}
 	}
@@ -2545,6 +2568,8 @@ class PlayState extends MusicBeatState
 			sicks += 1;
 		}
 
+		rank.goodhit = notehit;
+		rank.misses = misses;
 
 
 		songScore += score;
@@ -2759,8 +2784,6 @@ class PlayState extends MusicBeatState
 									if (controlArray[ignoreList[shit]])
 										inIgnoreList = true;
 								}
-								if (!inIgnoreList)
-									badNoteCheck();
 							}
 						}
 					}
@@ -2811,10 +2834,7 @@ class PlayState extends MusicBeatState
 					}
 				 */
 			}
-			else
-			{
-				badNoteCheck();
-			}
+
 		}
 
 		if ((up || right || down || left) && !boyfriend.stunned && generatedMusic)
@@ -2905,13 +2925,6 @@ class PlayState extends MusicBeatState
 			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
 			// FlxG.log.add('played imss note');
 
-			boyfriend.stunned = false;
-
-			// get stunned for 5 seconds
-			new FlxTimer().start(5 / 60, function(tmr:FlxTimer)
-			{
-				boyfriend.stunned = false;
-			});
 
 			switch (direction)
 			{
@@ -2928,20 +2941,10 @@ class PlayState extends MusicBeatState
 	}
 	function noteMissTwo(direction:Int = 1):Void
         {
-            if (!boyfriend.stunned)
-            {    
                 FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-    
-                boyfriend.stunned = true;
-    
-                // get stunned for 5 seconds
-                new FlxTimer().start(0.7, function(tmr:FlxTimer)
-                {
-                    boyfriend.stunned = false;
-                });
-    
-                switch (direction)
-                {
+
+			switch (direction)
+		    {
                     case 0:
                         boyfriend.playAnim('singLEFTmiss', true);
                     case 1:
@@ -2950,37 +2953,15 @@ class PlayState extends MusicBeatState
                         boyfriend.playAnim('singUPmiss', true);
                     case 3:
                         boyfriend.playAnim('singRIGHTmiss', true);
-                }
             }
         }
 
-	function badNoteCheck()
-	{
-		// just double pasting this shit cuz fuk u
-		// REDO THIS SYSTEM!
-		var upP = controls.UP_P;
-		var rightP = controls.RIGHT_P;
-		var downP = controls.DOWN_P;
-		var leftP = controls.LEFT_P;
 
-		if (leftP)
-			noteMiss(0);
-		if (downP)
-			noteMiss(1);
-		if (upP)
-			noteMiss(2);
-		if (rightP)
-			noteMiss(3);
-	}
 
 	function noteCheck(keyP:Bool, note:Note):Void
 	{
 		if (keyP)
 			goodNoteHit(note);
-		else
-		{
-			badNoteCheck();
-		}
 	}
 
 	function goodNoteHit(note:Note):Void

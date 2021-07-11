@@ -32,6 +32,14 @@ class Boyfriend extends Character
 				playAnim('idle', true, false, 10);
 			}
 
+			if (animation.curAnim.name == 'dodge')
+			{
+				new FlxTimer().start(1, function(tmr:FlxTimer){
+					playAnim('idle',true,false,10);
+				});
+			}
+			
+
 			if (animation.curAnim.name == 'firstDeath' && animation.curAnim.finished)
 			{
 				playAnim('deathLoop');

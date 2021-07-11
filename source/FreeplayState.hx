@@ -25,6 +25,7 @@ class FreeplayState extends MusicBeatState
 
 	var scoreText:FlxText;
 	var diffText:FlxText;
+	var character:Character;
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 
@@ -80,7 +81,10 @@ class FreeplayState extends MusicBeatState
 			addWeek(['Satin-Panties', 'High', 'Milf'], 4, ['mom']);
 
 		if (StoryMenuState.weekUnlocked[5] || isDebug)
-			addWeek(['Cocoa', 'Eggnog', 'Winter-Horrorland'], 5, ['parents-christmas', 'parents-christmas', 'monster-christmas']);
+			addWeek(['Cocoa', 'Eggnog'], 5, ['parents-christmas', 'parents-christmas']);
+		
+		if (StoryMenuState.weekUnlocked[5] || isDebug)
+			addWeek(['Winter-Horrorland'], 5, ['monster-christmas']);
 
 		if (StoryMenuState.weekUnlocked[6] || isDebug)
 			addWeek(['Senpai', 'Roses', 'Thorns'], 6, ['senpai', 'senpai', 'spirit']);
@@ -105,6 +109,8 @@ class FreeplayState extends MusicBeatState
 		if (StoryMenuState.weekUnlocked[4] || isDebug)
 			addWeek(['Satin-Panties', 'High', 'Milf'], 4, ['mom']);
 	}
+
+	
 		
 		// LOAD MUSIC
 
@@ -118,7 +124,8 @@ class FreeplayState extends MusicBeatState
 
 		for (i in 0...songs.length)
 		{
-			var songText:Alphabet = new Alphabet(330, (70 * i) + 30, songs[i].songName, true, false);
+			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
+			songText.screenCenter();
 			songText.y = (100 * i) + 50;
 			//songText.isMenuItem = true;
 			songText.isCenteredMenuItem = true;
@@ -192,6 +199,11 @@ class FreeplayState extends MusicBeatState
 	public function addSong(songName:String, weekNum:Int, songCharacter:String)
 	{
 		songs.push(new SongMetadata(songName, weekNum, songCharacter));
+
+		remove(character);
+		character = new Character(0, 550, songCharacter);
+		add(character);
+		character.playAnim('idle');
 	}
 
 	public function addWeek(songs:Array<String>, weekNum:Int, ?songCharacters:Array<String>)
@@ -262,6 +274,76 @@ class FreeplayState extends MusicBeatState
 			trace('CUR WEEK' + PlayState.storyWeek);
 			LoadingState.loadAndSwitchState(new PlayState());
 		}
+
+
+	    /*switch (songs[curSelected])
+		{
+			case 'Tutorial':
+				remove(character);
+				character = new Character(0, 550, 'gf');
+				add(character);
+				character.playAnim('idle');
+			case 'Bopeebo' | 'Fresh' | 'Dadbattle':
+				remove(character);
+				character = new Character(0, 550, 'dad');
+				add(character);
+				character.playAnim('idle');
+			case 'Spookeez' | 'South':
+				remove(character);
+				character = new Character(0, 550, 'spooky');
+				add(character);
+				character.playAnim('idle');
+			case 'Monster':
+				remove(character);
+				character = new Character(0, 550, 'monster');
+				add(character);
+				character.playAnim('idle');
+			case 'Pico' | 'Philly' | 'Blammed':
+				remove(character);
+				character = new Character(0, 550, 'pico');
+				add(character);
+				character.playAnim('idle');
+			case 'Satin-Panties' | 'High' | 'Milf':
+				remove(character);
+				character = new Character(0, 550, 'mom');
+				add(character);
+				character.playAnim('idle');
+			case 'Eggnog' | 'Cocoa':
+				remove(character);
+				character = new Character(0, 550, 'parents-christmas');
+				add(character);
+				character.playAnim('idle');
+			case 'Senpai':
+				remove(character);
+				character = new Character(0, 550, 'senpai');
+				add(character);
+				character.playAnim('idle');
+			case 'Roses':
+				remove(character);
+				character = new Character(0, 550, 'senpai-angry');
+				add(character);
+				character.playAnim('idle');
+			case 'Thorns':
+				remove(character);
+				character = new Character(0, 550, 'spirit');
+				add(character);
+				character.playAnim('idle');
+			case 'Ugh' | 'Guns' | 'Stress':
+				remove(character);
+				character = new Character(0, 550, 'tankman');
+				add(character);
+				character.playAnim('idle');
+			case 'Dunk' | 'RAM' | 'Hello-World' | 'Glitcher' | 'Encore':
+				remove(character);
+				character = new Character(0, 550, 'hex');
+				add(character);
+				character.playAnim('idle');
+			default:
+				remove(character);
+				character = new Character(0, 550, 'dad');
+				add(character);
+				character.playAnim('idle');
+		}*///This code was messy as fuck anyways
 	}
 
 	function changeDiff(change:Int = 0)

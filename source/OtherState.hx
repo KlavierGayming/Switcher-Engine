@@ -21,7 +21,7 @@ class OtherState extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['credits', 'Work In Progress', 'Options', 'Optimization Options'];
+	var menuItems:Array<String> = ['credits', 'WIP', 'Options', 'Optimization Options'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -58,7 +58,8 @@ class OtherState extends MusicBeatState
 		for (i in 0...menuItems.length)
 		{ 
 			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
-			controlLabel.screenCenter(X);
+			controlLabel.screenCenter();
+			controlLabel.y = (100 * i) + 100;
 			//controlLabel.isMenuItem = true;
 			//controlLabel.targetY = i;
 			grpControls.add(controlLabel);
@@ -99,7 +100,7 @@ class OtherState extends MusicBeatState
                 case 'Optimization Options':
                     FlxG.switchState(new options.OptimizationOptions());
                     trace('Optimization options menu selected');
-				case 'Custom Note Assets':
+				case 'Note Asset':
 					FlxG.switchState(new CustomNoteAsset());
 					trace('H');
 				case 'Work In Progress' | 'Please be patient':
