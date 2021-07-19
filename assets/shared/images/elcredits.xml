@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="elcredits.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="luck0000" x="0" y="0" width="175" height="200"/>
+	<SubTexture name="me!0000" x="175" y="0" width="175" height="200"/>
+	<SubTexture name="muffin0000" x="350" y="0" width="175" height="200"/>
+	<SubTexture name="thefuniartist0000" x="525" y="0" width="175" height="200"/>
+	<SubTexture name="themusician0000" x="700" y="0" width="175" height="200"/>
+	<SubTexture name="theotherartist0000" x="0" y="200" width="175" height="200"/>
+	<SubTexture name="zack0000" x="175" y="200" width="175" height="200"/>
+</TextureAtlas>

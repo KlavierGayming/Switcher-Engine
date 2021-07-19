@@ -12,5 +12,8 @@ class SaveData {
 
     if (FlxG.save.data.noend = null)
         FlxG.save.data.noend = false;
+    
+    if (FlxG.save.data.emptyness = null)
+        FlxG.save.data.emptyness = false;
     }
 }

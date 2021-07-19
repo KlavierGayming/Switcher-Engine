@@ -86,7 +86,7 @@ class OtherState extends MusicBeatState
 			switch (daSelected)
 			{
 				case "credits":
-					FlxG.switchState(new options.CreditsState());
+					FlxG.switchState(new options.AboutState());
 					trace('get rekt stealers');
                 case 'Mods Story':
                     FlxG.switchState(new mods.NoMods());

@@ -307,6 +307,8 @@ class PlayState extends MusicBeatState
 		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
 		#end
 
+		if (!FlxG.save.data.emptyness)
+		{
 		switch (SONG.song.toLowerCase())
 		{
                         case 'spookeez' | 'monster' | 'south': 
@@ -912,6 +914,7 @@ class PlayState extends MusicBeatState
 		                  add(stageCurtains);
 		          }
               }
+			}
 
 		var gfVersion:String = 'gf';
 
@@ -1054,9 +1057,13 @@ class PlayState extends MusicBeatState
 		if (curStage == 'limo')
 			add(limo);
 	}
+	else if (FlxG.save.data.emptyness) {}
 
+	if (!FlxG.save.data.emptyness)
+	{
 		add(dad);
 		add(boyfriend);
+	}
 
 		//again shitty layering but whatever
 	if (!isNoBg)
@@ -1071,6 +1078,7 @@ class PlayState extends MusicBeatState
 			add(tankBop6);
 		}
 	}
+	else if (FlxG.save.data.emptyness) {}
 
 		
 
@@ -3167,6 +3175,7 @@ class PlayState extends MusicBeatState
 	}
 	else if (!isNoSwitch) {}
 	else if (!isNeo) {}
+	else if (FlxG.save.data.emptyness) {}
 	
 
 	if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
@@ -3291,7 +3300,8 @@ class PlayState extends MusicBeatState
 			lightningStrikeShit();
 		}
 	}
-	}
+	} else if (FlxG.save.data.emptyness) {}
+	
         
 
 	var curLight:Int = 0;

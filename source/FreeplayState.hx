@@ -126,11 +126,12 @@ class FreeplayState extends MusicBeatState
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
 			songText.screenCenter();
-			songText.y = (100 * i) + 50;
-			//songText.isMenuItem = true;
+			songText.y = (50 * i) + 50;
 			songText.isCenteredMenuItem = true;
+			//songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
+			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 
 			var icon:HealthIcon = new HealthIcon(songs[i].songCharacter);
 			icon.sprTracker = songText;
