@@ -21,7 +21,7 @@ class OtherState extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['credits', 'WIP', 'Options', 'Optimization Options'];
+	var menuItems:Array<String> = ['credits', 'BF Skin', 'Options', 'Optimization Options', 'I dont even know anymore'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -100,12 +100,11 @@ class OtherState extends MusicBeatState
                 case 'Optimization Options':
                     FlxG.switchState(new options.OptimizationOptions());
                     trace('Optimization options menu selected');
-				case 'Note Asset':
-					FlxG.switchState(new CustomNoteAsset());
+				case 'BF Skin':
+					FlxG.switchState(new BfSelectionState());
 					trace('H');
-				case 'Work In Progress' | 'Please be patient':
-					ass = !ass;
-					trace('no');
+				case 'I dont even know anymore':
+					FlxG.switchState(new TextThingState());
 			}
 		}
 

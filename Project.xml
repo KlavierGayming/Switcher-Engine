@@ -140,8 +140,6 @@
 	<haxelib name="polymod"/>
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="extension-webm-2" unless="html5"/>
-	<!-- <haxelib name="extension-webview" if="mobile"/> -->
-	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->

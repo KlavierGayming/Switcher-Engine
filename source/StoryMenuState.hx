@@ -15,6 +15,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.net.curl.CURLCode;
+import openfl.Assets;
 
 using StringTools;
 
@@ -22,25 +23,16 @@ class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
 	var isNeo:Bool = new Config().getneo();
+	var customWeekSongs = Assets.getText(Paths.txt('customWeekSongs'));
 
-	var weekData:Array<Dynamic> = [
-			['Tutorial'],
-			['Bopeebo', 'Fresh', 'Dadbattle'],
-			['Spookeez', 'South'],
-			['Pico', 'Philly', "Blammed"],
-			['Satin-Panties', "High", "Milf"],
-			['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-			['Senpai', 'Roses', 'Thorns'],
-			['Ugh', 'Guns', 'Stress'],
-			['Dunk', 'RAM', 'Hello-World', 'Glitcher']
-		];
+	var weekData:Array<Dynamic> = [];
 
 	
 
 
 	var curDifficulty:Int = 1;
 
-		public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true];
+		public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['dad', 'bf', 'gf'],
@@ -51,7 +43,8 @@ class StoryMenuState extends MusicBeatState
 		['parents-christmas', 'bf', 'gf'],
 		['senpai', 'bf', 'gf'],
 		['tenkmon', 'bf', 'gf'],
-		['hex', 'bf', 'gf']
+		['hex', 'bf', 'gf'],
+		['dad', 'bf', 'gf']
 	];
 
 	var weekNames:Array<String> = [
@@ -63,7 +56,8 @@ class StoryMenuState extends MusicBeatState
 		"RED SNOW",
 		"hating simulator ft. moawling",
 		"TENKMON",
-		"HEX"
+		"HEX",
+		"Custom Week"
 	];
 
 	var txtWeekTitle:FlxText;
@@ -84,16 +78,18 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
-		if (isNeo)
-		{
-			weekData = [
-				["Tutorial"],
-				['Bopeebo', 'Fresh', 'Dadbattle'],
-				['Spookeez', 'South'],
-				['Pico', 'Philly', 'Blammed'],
-				['Satin-Panties', 'High', 'Milf']
-			];
-		}
+		var assShit:Array<String> = customWeekSongs.split(', ');
+		weekData = [
+			['Tutorial'],
+			['Bopeebo', 'Fresh', 'Dadbattle'],
+			['Spookeez', 'South'],
+			['Pico', 'Philly', "Blammed"],
+			['Satin-Panties', "High", "Milf"],
+			['Cocoa', 'Eggnog', 'Winter-Horrorland'],
+			['Senpai', 'Roses', 'Thorns'],
+			['Ugh', 'Guns', 'Stress'],
+			['Dunk', 'RAM', 'Hello-World', 'Glitcher']
+		];
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 

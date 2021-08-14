@@ -151,6 +151,21 @@ class Config {
         return 0;
     }
 
+	public function getbfmode():Int {
+		switch (FlxG.save.data.bfThing)
+		{
+			case 'bf':
+				return 0;
+			case 'jamey':
+				return 1;
+			case 'mark':
+				return 2;
+			case 'custom':
+				return 3;
+		}
+		return 0;
+	}
+
     public function setcontrolmode(mode:Int = 0):Int {
         // save control mode num from FlxSave
 		if (save.data.buttonsmode == null) save.data.buttonsmode = new Array();

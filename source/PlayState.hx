@@ -713,10 +713,10 @@ class PlayState extends MusicBeatState
 					tankBop6.scrollFactor.set(1.5, 1.5);
 					tankBop6.antialiasing = true;
 				  }
-				  case 'stress':
+				  case 'stress' | 'foolhardy':
 				  {
 					  curStage = 'tank2';
-                      defaultCamZoom = 0.8;
+                      defaultCamZoom = 0.9;
 
 					  var sky:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('tankSky','week7'));
 					  sky.scrollFactor.set(0.9, 0.9);
@@ -991,7 +991,10 @@ class PlayState extends MusicBeatState
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 		}
 
-		boyfriend = new Boyfriend(770, 450, SONG.player1);
+		if (FlxG.save.data.bfThing == 'bf')
+			boyfriend = new Boyfriend(770, 450, SONG.player1);
+		else
+			boyfriend = new Boyfriend(770, 450, FlxG.save.data.bfThing);
 
 		// REPOSITIONING PER STAGE
 		switch (curStage)
@@ -1509,6 +1512,8 @@ class PlayState extends MusicBeatState
 	{
 		#if mobileC
 		mcontrols.visible = true;
+		addVirtualPad(P, NONE);
+		var p = _virtualpad.buttonPause.justPressed;
 		#end
 
 		
@@ -2067,7 +2072,7 @@ class PlayState extends MusicBeatState
 		}
 
 		
-		if (FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end && (startedCountdown && canPause))
+		if (FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK || p #end && (startedCountdown && canPause))
 		{
 			persistentUpdate = false;
 			persistentDraw = true;

@@ -22,7 +22,7 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = [#if mobile 'controls', #end 'set fps', 'practice: off', 'death counter per song', /*'neo remixes: off' ,DELAYED AGAIN CUZ IM SPTUDI*/ 'song pos bar: off', 'About'];
+	var menuItems:Array<String> = [#if android 'controls', #end 'set fps', 'practice: off', 'death counter per song', /*'neo remixes: off' ,DELAYED AGAIN CUZ IM SPTUDI*/ 'song pos bar: off', 'botplay: off', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -91,6 +91,15 @@ class OptionsMenu extends MusicBeatState
 		{
 			menuItems[menuItems.indexOf('end stat screen: on')] = 'end stat screen: off';
 		}
+		if (FlxG.save.data.pause)
+		{
+			menuItems[menuItems.indexOf('pause button: on')] = 'pause button: off';
+		}
+		if (FlxG.save.data.botplay)
+		{
+			menuItems[menuItems.indexOf('botplay: off')] = 'botplay: on';
+		}
+	
 
 		for (i in 0...menuItems.length)
 		{ 
@@ -151,6 +160,9 @@ class OptionsMenu extends MusicBeatState
 					FlxG.resetState();
 				case 'end stat screen: on' | 'end stat screen: off':
 					FlxG.save.data.noend = !FlxG.save.data.noend;
+					FlxG.resetState();
+				case 'botplay: off' | 'botplay: on':
+					FlxG.save.data.bot = !FlxG.save.data.bot;
 					FlxG.resetState();
 			}
 		}

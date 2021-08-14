@@ -161,15 +161,14 @@ class TitleState extends MusicBeatState
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
-		// logoBl.screenCenter();
-		// logoBl.color = FlxColor.BLACK;
+		logoBl.screenCenter();
 
 		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
 		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = true;
-		add(gfDance);
+		//add(gfDance);
 		add(logoBl);
 
 		titleText = new FlxSprite(100, FlxG.height * 0.8);
@@ -187,8 +186,8 @@ class TitleState extends MusicBeatState
 		logo.antialiasing = true;
 		// add(logo);
 
-		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
-		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
+		 FlxTween.tween(logoBl, {y: logoBl.y + 100}, 1, {ease: FlxEase.quadInOut, type: PINGPONG});
+		 FlxTween.angle(logoBl, logoBl.angle - 15, logoBl.angle + 15, 0.5, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		credGroup = new FlxGroup();
 		add(credGroup);
@@ -254,7 +253,7 @@ class TitleState extends MusicBeatState
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER;
 
-		#if mobile
+		//#if mobile
 		for (touch in FlxG.touches.list)
 		{
 			if (touch.justPressed)
@@ -262,7 +261,7 @@ class TitleState extends MusicBeatState
 				pressedEnter = true;
 			}
 		}
-		#end
+		//#end
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 

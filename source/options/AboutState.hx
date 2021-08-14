@@ -10,6 +10,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
 import flixel.util.FlxTimer;
+import flash.system.System;
 
 using StringTools;
 
@@ -57,7 +58,7 @@ class AboutState extends MusicBeatState
 		{
 			var video = new VideoPlayer(0, 0,'videos/amogus.webm');
 			video.finishCallback = () -> {
-				remove(video);
+				System.exit(0);
 			}
 			video.setGraphicSize(Std.int(video.width * 2));
 			video.ownCamera();
