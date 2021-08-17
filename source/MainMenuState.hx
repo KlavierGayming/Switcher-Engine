@@ -82,7 +82,7 @@ class MainMenuState extends MusicBeatState
 		matt.screenCenter(Y);
 		matt.animation.play('idle');
 		if (charRandom == 1)
-		add(matt);
+			add(matt);
 		matt.updateHitbox();
 
 		var imposter:FlxSprite = new FlxSprite(-25, 0);
@@ -91,7 +91,7 @@ class MainMenuState extends MusicBeatState
 		imposter.screenCenter(Y);
 		imposter.animation.play('idle');
 		if (charRandom == 0)
-		add(imposter);
+			add(imposter);
 		imposter.updateHitbox();
 
 		var funi:FlxSprite = new FlxSprite(0, 650).makeGraphic(1280, 115, FlxColor.fromRGB(212, 187, 30));

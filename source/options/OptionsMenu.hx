@@ -95,7 +95,7 @@ class OptionsMenu extends MusicBeatState
 		{
 			menuItems[menuItems.indexOf('pause button: on')] = 'pause button: off';
 		}
-		if (FlxG.save.data.botplay)
+		if (FlxG.save.data.bot)
 		{
 			menuItems[menuItems.indexOf('botplay: off')] = 'botplay: on';
 		}

@@ -21,7 +21,7 @@ class OtherState extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['credits', 'BF Skin', 'Options', 'Optimization Options', 'I dont even know anymore'];
+	var menuItems:Array<String> = ['credits', 'Options', 'Optimization Options'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;

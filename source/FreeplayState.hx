@@ -187,11 +187,6 @@ class FreeplayState extends MusicBeatState
 	public function addSong(songName:String, weekNum:Int, songCharacter:String)
 	{
 		songs.push(new SongMetadata(songName, weekNum, songCharacter));
-
-		remove(character);
-		character = new Character(0, 550, songCharacter);
-		add(character);
-		character.playAnim('idle');
 	}
 
 	public function addWeek(songs:Array<String>, weekNum:Int, ?songCharacters:Array<String>)
@@ -241,6 +236,10 @@ class FreeplayState extends MusicBeatState
 		{
 			curDifficulty = 1;
 			diffText.text = 'FOOLHARDY';
+		}
+		else
+		{
+			changeDiff(0);
 		}
 		if (songs[curSelected].songName != 'Foolhardy')
 		{
@@ -353,7 +352,6 @@ class FreeplayState extends MusicBeatState
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		#end
-
 		switch (curDifficulty)
 		{
 			case 0:

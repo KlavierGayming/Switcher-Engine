@@ -155,13 +155,13 @@ class TitleState extends MusicBeatState
 		// bg.updateHitbox();
 		add(bg);
 
-		logoBl = new FlxSprite(-150, -100);
+		logoBl = new FlxSprite(-150, 2000);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
-		logoBl.screenCenter();
+		logoBl.screenCenter(X);
 
 		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
 		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
@@ -171,7 +171,7 @@ class TitleState extends MusicBeatState
 		//add(gfDance);
 		add(logoBl);
 
-		titleText = new FlxSprite(100, FlxG.height * 0.8);
+		titleText = new FlxSprite(100, 2000);
 		titleText.frames = Paths.getSparrowAtlas('titleEnter');
 		titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
 		titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
@@ -185,9 +185,6 @@ class TitleState extends MusicBeatState
 		logo.screenCenter();
 		logo.antialiasing = true;
 		// add(logo);
-
-		 FlxTween.tween(logoBl, {y: logoBl.y + 100}, 1, {ease: FlxEase.quadInOut, type: PINGPONG});
-		 FlxTween.angle(logoBl, logoBl.angle - 15, logoBl.angle + 15, 0.5, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		credGroup = new FlxGroup();
 		add(credGroup);
@@ -437,6 +434,10 @@ class TitleState extends MusicBeatState
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			skippedIntro = true;
+			FlxTween.tween(titleText, {y: FlxG.height * 0.8}, 2);
+			FlxTween.tween(logoBl, {y: -100}, 1, {onComplete: function(twn:FlxTween){
+				FlxTween.tween(logoBl, {y: logoBl.y + 20}, 1, {type: PINGPONG});
+			}});
 		}
 	}
 }

@@ -1,0 +1,30 @@
+if (curStep == 39 || curStep == 103 || curStep == 384 || curStep == 448 || curStep == 679 || curStep == 744 || curStep == 1192 || curStep == 1256)
+{
+    	strumLineNotes.forEach(function(note){
+		ModCharts.quickSpin(note);
+    	});
+	trace('funny');
+}
+if (curStep == 255 || curStep == 768)
+{
+    FlxTween.color(dad, 2, dad.color, 0xFF4287f5);
+    ModCharts.circleLoop(dad, 100, 3);
+    strumLineNotes.forEach(function(note){
+	ModCharts.circleLoop(note, 50, 3);
+    });
+}
+if (curStep == 640 || curStep == 1023)
+{
+    FlxTween.color(dad, 2, dad.color, 0xFFFF638A);
+    strumLineNotes.forEach(function(note){
+	ModCharts.cancelMovement(note);
+    });
+    ModCharts.cancelMovement(dad);
+    dad.x=-50;
+    dad.y=200;
+    fixNotePos();
+}
+if (curStep == 1284)
+{
+    FlxTween.tween(dad, {alpha: 0}, 3);
+}
