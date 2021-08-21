@@ -3185,6 +3185,11 @@ class PlayState extends MusicBeatState
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition);
 
 		note.rating = Ratings.CalculateRating(noteDiff);
+		if (note.rating == 'miss')
+		{
+			noteMiss(note.noteData);
+			return;
+		}
 		if (!note.wasGoodHit)
 		{
 			if (!note.isSustainNote)
@@ -3517,7 +3522,7 @@ class PlayState extends MusicBeatState
 			gf.dance();
 		}
 
-		if (!boyfriend.animation.curAnim.name.startsWith("sing"))
+		if (!boyfriend.animation.curAnim.name.startsWith("sing") || FlxG.save.data.bot)
 		{
 			boyfriend.playAnim('idle');
 		}
