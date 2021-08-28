@@ -3387,6 +3387,8 @@ class PlayState extends MusicBeatState
 			interp.variables.set("curBeat",curBeat);
 			interp.variables.set("iconP1",iconP1);
 			interp.variables.set("iconP2",iconP2);
+			interp.variables.set('camHUD', camHUD);
+			interp.variables.set('scoreTxt', scoreTxt);
 			interp.variables.set("playerStrums",playerStrums);
 			interp.variables.set("cpuStrums",cpuStrums);
 			interp.variables.set("strumLineNotes",strumLineNotes);
