@@ -21,7 +21,7 @@ class OtherState extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['credits', 'Options', 'Optimization Options'];
+	var menuItems:Array<String> = ['credits', 'Options', 'Optimization Options', 'Achievements'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -105,6 +105,8 @@ class OtherState extends MusicBeatState
 					trace('H');
 				case 'I dont even know anymore':
 					FlxG.switchState(new TextThingState());
+				case 'Achievements':
+					FlxG.switchState(new AchievementsState());
 			}
 		}
 

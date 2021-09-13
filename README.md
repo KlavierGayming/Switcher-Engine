@@ -43,13 +43,25 @@ ndk - https://developer.android.com/ndk/downloads/older_releases?hl=fi
 
 4.unzip ndk
 
-5.and run command "lime setup android"
+5. you need to create a file called GJKeys.hx, because i gitignored it so people couldnt send fake API requests.
+just and add this into the file:
+```haxe
+package;
+class GJKeys
+{
+    public static var id:Int = 	0; // Put your game's ID here
+    public static var key:String = ""; // Put your game's private API key here
+}
+```
+then you should be able to use it idk
+
+6.and run command "lime setup android"
 you need to do as in the picture
 ![lime](https://user-images.githubusercontent.com/59097731/104179268-9e80f100-541c-11eb-948d-a00d85317b1a.PNG)
 
-6.copy folder lib to C:\HaxeToolkit\haxe
+7.copy folder lib to C:\HaxeToolkit\haxe
 
-7.open project in command line
+8.open project in command line
 and run command "lime test android"
 
 

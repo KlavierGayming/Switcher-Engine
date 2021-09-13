@@ -34,6 +34,7 @@ class Note extends FlxSprite
 	public static var RED_NOTE:Int = 3;
 
 	public var rating:String = 'sick';
+	var isDownscroll:Bool = new Config().getdownscroll();
 
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
 	{
@@ -141,6 +142,9 @@ class Note extends FlxSprite
 				case 0:
 					animation.play('purpleholdend');
 			}
+
+			if (animation.curAnim.name.endsWith('holdend') && isDownscroll)
+				angle = 180;
 
 			updateHitbox();
 

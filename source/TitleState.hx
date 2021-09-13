@@ -29,6 +29,7 @@ import io.newgrounds.NG;
 #end
 import lime.app.Application;
 import openfl.Assets;
+import GameJolt;
 
 using StringTools;
 
@@ -45,6 +46,8 @@ class TitleState extends MusicBeatState
 	var curWacky:Array<String> = [];
 
 	var wackyImage:FlxSprite;
+
+	var music = [];
 
 	override public function create():Void
 	{
@@ -119,6 +122,7 @@ class TitleState extends MusicBeatState
 
 	function startIntro()
 	{
+		GameJoltAPI.connect();
 		if (!initialized)
 		{
 			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
@@ -299,9 +303,9 @@ class TitleState extends MusicBeatState
 				#if newgrounds
 				var version:String = "v" + Application.current.meta.get('version');
 
-				if (version.trim() != NGio.GAME_VER_NUMS.trim() && !OutdatedSubState.leftState && APIStuff.API != "")
+				if (version.trim() != NGio.GAME_VER_NUMS.trim() && APIStuff.API != "")
 				{
-					FlxG.switchState(new OutdatedSubState());
+					FlxG.switchState(new GameJoltLogin());
 					trace('OLD VERSION!');
 					trace('old ver');
 					trace(version.trim());
@@ -310,10 +314,10 @@ class TitleState extends MusicBeatState
 				}
 				else
 				{
-					FlxG.switchState(new MainMenuState());
+					FlxG.switchState(new GameJoltLogin());
 				}
 				#else
-				FlxG.switchState(new MainMenuState());
+				FlxG.switchState(new GameJoltLogin());
 				#end
 			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
@@ -438,6 +442,14 @@ class TitleState extends MusicBeatState
 			FlxTween.tween(logoBl, {y: -100}, 1, {onComplete: function(twn:FlxTween){
 				FlxTween.tween(logoBl, {y: logoBl.y + 20}, 1, {type: PINGPONG});
 			}});
+		}
+	}
+	function cache():Void {
+		for (i in music)
+		{
+			FlxG.sound.cache(Paths.inst(i));
+			FlxG.sound.cache(Paths.voices(i));
+			trace("cached " + i);
 		}
 	}
 }

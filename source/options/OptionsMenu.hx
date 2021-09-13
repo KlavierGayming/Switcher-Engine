@@ -22,7 +22,7 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = [#if android 'controls', #end 'set fps', 'practice: off', 'death counter per song', /*'neo remixes: off' ,DELAYED AGAIN CUZ IM SPTUDI*/ 'song pos bar: off', 'botplay: off', 'About'];
+	var menuItems:Array<String> = ['controls', 'downscroll: off', 'set fps', 'practice: off', 'death counter per song', 'song pos bar: off', 'botplay: off','note splash: off', 'About'];
 
 	var UP_P:Bool;
 	var DOWN_P:Bool;
@@ -99,6 +99,10 @@ class OptionsMenu extends MusicBeatState
 		{
 			menuItems[menuItems.indexOf('botplay: off')] = 'botplay: on';
 		}
+		if (FlxG.save.data.notesplash)
+		{
+			menuItems[menuItems.indexOf('note splash: off')] = 'note splash: on';
+		}
 	
 
 		for (i in 0...menuItems.length)
@@ -130,11 +134,17 @@ class OptionsMenu extends MusicBeatState
 			switch (daSelected)
 			{
 				case "credits":
+					#if mobileC
 					FlxG.switchState(new options.CreditsState());
-					
+					#else
+					openSubState(new KeyBindMenu());
+					#end
 				case "controls":
-				FlxG.switchState(new options.CustomControlsState());
-
+					#if mobileC
+					FlxG.switchState(new options.CreditsState());
+					#else
+					openSubState(new KeyBindMenu());
+					#end
 				case "config":
 					trace("hello");
 				case 'practice: on' | 'practice: off':
@@ -163,6 +173,9 @@ class OptionsMenu extends MusicBeatState
 					FlxG.resetState();
 				case 'botplay: off' | 'botplay: on':
 					FlxG.save.data.bot = !FlxG.save.data.bot;
+					FlxG.resetState();
+				case 'note splash: off' | 'note splash: on':
+					FlxG.save.data.notesplash = !FlxG.save.data.notesplash;
 					FlxG.resetState();
 			}
 		}

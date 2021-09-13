@@ -13,6 +13,8 @@ class Highscore
 
 	public static function saveScore(song:String, score:Int = 0, ?diff:Int = 0):Void
 	{
+		if (!FlxG.save.data.bot)
+		{
 		var daSong:String = formatSong(song, diff);
 
 
@@ -30,10 +32,15 @@ class Highscore
 		}
 		else
 			setScore(daSong, score);
+		}
+		else
+			trace('haha funny botplay, no score saving for u!');
 	}
 
 	public static function saveWeekScore(week:Int = 1, score:Int = 0, ?diff:Int = 0):Void
 	{
+		if (!FlxG.save.data.bot)
+		{
 		#if newgrounds
 		#if !switch
 		NGio.postScore(score, "Week " + week);
@@ -50,6 +57,9 @@ class Highscore
 		}
 		else
 			setScore(daWeek, score);
+		}
+		else
+			trace('BOTPLAY LOL, NO SCORE SAVING FOR U!2!1!1!1!1!');
 	}
 
 	/**

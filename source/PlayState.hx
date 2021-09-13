@@ -15,6 +15,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.addons.display.FlxGridOverlay;
+import openfl.Lib;
 import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxTrailArea;
 import flixel.addons.effects.chainable.FlxEffectSprite;
@@ -85,8 +86,11 @@ class PlayState extends MusicBeatState
 	private var strumLineNotes:FlxTypedGroup<FlxSprite>;
 	private var playerStrums:FlxTypedGroup<FlxSprite>;
 
+	var isDownScroll:Bool = new Config().getdownscroll();
+	var isDownscroll:Bool = new Config().getdownscroll();
 	//splash
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
+	var noteSplashOp:Bool = FlxG.save.data.noteSplash;
 
 	private var camZooming:Bool = false;
 	private var curSong:String = "";
@@ -237,6 +241,11 @@ class PlayState extends MusicBeatState
 
 		persistentUpdate = true;
 		persistentDraw = true;
+		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
+		var sploosh = new NoteSplash();
+		sploosh.setupNoteSplash(100, 100, 0);
+		sploosh.alpha = 0.6;
+		grpNoteSplashes.add(sploosh);
 
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
@@ -1114,7 +1123,6 @@ class PlayState extends MusicBeatState
 
 		Conductor.songPosition = -5000;
 
-		var isDownScroll:Bool = new Config().getdownscroll();
 		var isNoCut:Bool = new Config().getnocut();
 
 		
@@ -1134,6 +1142,7 @@ class PlayState extends MusicBeatState
 		// startCountdown();
 
 		generateSong(SONG.song);
+		add(grpNoteSplashes);
 
 		// add(strumLine);
 
@@ -1203,10 +1212,8 @@ class PlayState extends MusicBeatState
 
 		
 
-		scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y - 75, 0, "", 20);
-		scoreTxt.x = 0;
-		scoreTxt.y -= 10;
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		scoreTxt = new FlxText(10, 0, 0, "", 20);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
@@ -1221,12 +1228,14 @@ class PlayState extends MusicBeatState
 
 
 
-		funiRating = new FlxSprite(1000, 550);
+		funiRating = new FlxSprite(0, 550);
 		funiRating.frames = Paths.getSparrowAtlas('ratings','shared');
 		funiRating.animation.addByPrefix('kewl', 'kewl');
 		funiRating.animation.addByPrefix('ayy', 'ayyy');
 		funiRating.animation.addByPrefix('angy', 'angy');
 		funiRating.animation.addByPrefix('ded','ded');
+		funiRating.x = FlxG.width - funiRating.width - 10;
+		funiRating.y = FlxG.height - funiRating.height - 10;
 		add(funiRating);
 		funiRating.animation.play('kewl');
 
@@ -1250,6 +1259,7 @@ class PlayState extends MusicBeatState
 		funiRating.cameras = [camHUD];
 		doof.cameras = [camHUD];
 		songTxt.cameras = [camHUD];
+		grpNoteSplashes.cameras = [camHUD];
 
 		rank = new Rank();
 
@@ -2032,6 +2042,7 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		songTxt.text = SONG.song.replace('-', ' ').toUpperCase() + " (" + difficStr.toUpperCase() + ") - Switcher Engine " + MainMenuState.switcherEngineVer + ' | ' + cast(Lib.current.getChildAt(0), Main).getFPS() + 'FPS';
 		if (mashingViolation > 8)
 		{
 			scoreTxt.color = FlxColor.RED;
@@ -2105,28 +2116,41 @@ class PlayState extends MusicBeatState
 			 + "\nCombo:" + combo 
 			 + "\nTime Elapsed: " + Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) 
 			 + "s\nAccuracy: " + accuracy
-			 + "%\nRank: "+ rating + " " + ratingplus 
-			 + "\nMade by Klavier\n";
+			 + "%\nRank: "+ rating + " " + ratingplus + "\n";
+
+			 scoreTxt.y = FlxG.height - scoreTxt.height + 20;
+
 		}
 		else
 		{
 			scoreTxt.text = "BOTPLAY - SE 1.0";
 			scoreTxt.y = FlxG.height - 20;
 		}
-		
 
+		if (isDownscroll && !FlxG.save.data.bot)
+		{
+			scoreTxt.text = "Score:" + songScore
+			+ " | Misses:" + misses 
+			+ " | Note hits:" + notehit 
+			+ " | Combo:" + combo 
+			+ " | Accuracy: " + accuracy
+			+ "% | Rank: "+ rating + " " + ratingplus;
 
-		if (misses <= 10 && misses != 0)
-		{
-			funiRating.animation.play('ayy');
+			scoreTxt.alignment = CENTER;
+			scoreTxt.y = FlxG.height - scoreTxt.height;
+			scoreTxt.screenCenter(X);
 		}
-		if (misses >= 10)
+
+		switch (rating)
 		{
-			funiRating.animation.play('angy');
-		}
-		if (misses >= 10 && health <= 0.5)
-		{
-			funiRating.animation.play('ded');
+			case 'S' | 'A':
+				funiRating.animation.play('kewl');
+			case 'B' | 'C':
+				funiRating.animation.play('ayy');
+			case 'D' | 'E':
+				funiRating.animation.play('angy');
+			default:
+				funiRating.animation.play('dead');
 		}
 
 		
@@ -2409,12 +2433,15 @@ class PlayState extends MusicBeatState
 					daNote.active = true;
 				}
 
-				daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
-
+				if (isDownScroll)
+					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(SONG.speed, 2)))
+				else
+					daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 				// i am so fucking sorry for this if condition
 				if (daNote.isSustainNote
 					&& daNote.y + daNote.offset.y <= strumLine.y + Note.swagWidth / 2
-					&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+					&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit)))
+					&& !isDownscroll)
 				{
 					var swagRect = new FlxRect(0, strumLine.y + Note.swagWidth / 2 - daNote.y, daNote.width * 2, daNote.height * 2);
 					swagRect.y /= daNote.scale.y;
@@ -2448,10 +2475,14 @@ class PlayState extends MusicBeatState
 							dad.playAnim('singRIGHT' + altAnim, true);
 					}
 
+
+
 					dad.holdTimer = 0;
 
 					if (SONG.needsVoices)
 						vocals.volume = 1;
+
+
 
 					daNote.kill();
 					notes.remove(daNote, true);
@@ -2461,16 +2492,13 @@ class PlayState extends MusicBeatState
 					{
 						daNote.visible = playerStrums.members[Math.floor(Math.abs(daNote.noteData))].visible;
 						daNote.x = playerStrums.members[Math.floor(Math.abs(daNote.noteData))].x;
-						if (!daNote.isSustainNote)
-							daNote.angle = playerStrums.members[Math.floor(Math.abs(daNote.noteData))].angle;
 						daNote.alpha = playerStrums.members[Math.floor(Math.abs(daNote.noteData))].alpha;
 					}
 					else if (!daNote.wasGoodHit)
 					{
 						daNote.visible = strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].visible;
 						daNote.x = strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].x;
-						if (!daNote.isSustainNote)
-							daNote.angle = strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].angle;
+
 						daNote.alpha = strumLineNotes.members[Math.floor(Math.abs(daNote.noteData))].alpha;
 					}
 					
@@ -2483,7 +2511,7 @@ class PlayState extends MusicBeatState
 
 				var isPractice:Bool = new Config().getpractice();
 
-				if (daNote.y < -daNote.height)
+				if (daNote.y < -daNote.height && !isDownScroll || (daNote.y >= strumLine.y + 106) && isDownScroll)
 				{
 					if (daNote.tooLate && !isPractice || !daNote.wasGoodHit && !isPractice)
 					{
@@ -2566,6 +2594,29 @@ class PlayState extends MusicBeatState
 					#end
 					Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
 				}
+				switch (storyWeek)
+				{
+					case 0:
+						FlxG.save.data.beatWeek0 = true;
+					case 1:
+						FlxG.save.data.beatWeek1 = true;
+					case 2:
+						FlxG.save.data.beatWeek2 = true;
+					case 3:
+						FlxG.save.data.beatWeek3 = true;
+					case 4:
+						FlxG.save.data.beatWeek4 = true;
+					case 5:
+						FlxG.save.data.beatWeek5 = true;
+					case 6:
+						FlxG.save.data.beatWeek6 = true;
+					case 7:
+						FlxG.save.data.beatWeek7 = true;
+				}
+				if (FlxG.save.data.beatWeek0 && FlxG.save.data.beatWeek1 && FlxG.save.data.beatWeek2 && FlxG.save.data.beatWeek3 && FlxG.save.data.beatWeek4 && FlxG.save.data.beatWeek5 && FlxG.save.data.beatWeek6 && FlxG.save.data.beatWeek7)
+				{
+					unlockAchievement(1);
+				}
 
 				FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
 				FlxG.save.flush();
@@ -2611,6 +2662,8 @@ class PlayState extends MusicBeatState
 		else
 		{
 			trace('WENT BACK TO FREEPLAY??');
+			if (SONG.song.toLowerCase() == 'foolhardy')
+				unlockAchievement(2);
 			FlxG.switchState(new FreeplayState());
 			deathCount = 0;
 		}
@@ -2657,6 +2710,12 @@ class PlayState extends MusicBeatState
 				if (health < 2)
 					health += 0.1;
 				sicks++;
+				if (noteSplashOp)
+					{
+						var recycledNote = grpNoteSplashes.recycle(NoteSplash);
+						recycledNote.setupNoteSplash(daNote.x, daNote.y, daNote.noteData);
+						grpNoteSplashes.add(recycledNote);
+					}
 		}
 
 		rank.goodhit = notehit;

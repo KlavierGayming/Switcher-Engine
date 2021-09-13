@@ -1,5 +1,6 @@
 package;
 
+import flixel.tweens.FlxTween;
 import flixel.input.actions.FlxActionInput;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
@@ -10,6 +11,8 @@ import flixel.util.FlxTimer;
 #if mobileC
 import ui.FlxVirtualPad;
 #end
+import flixel.text.FlxText;
+import flixel.FlxSprite;
 
 class MusicBeatState extends FlxUIState
 {
@@ -76,6 +79,62 @@ class MusicBeatState extends FlxUIState
 	private function updateBeat():Void
 	{
 		curBeat = Math.floor(curStep / 4);
+	}
+
+	function unlockAchievement(id:Int)
+	{
+		var achievementDesc:String = '';
+		switch (id)
+		{
+			case 0:
+				achievementDesc = 'Gettin Freaky\nPlay FNF On A Friday Night!';
+				FlxG.save.data.fridayAchievement = true;
+			case 1:
+				achievementDesc = 'A regular player\nYou beat every week on hard mode!';
+				FlxG.save.data.beatEveryWeekAchievement = true;
+			case 2:
+				achievementDesc = 'Tankhardy\nYou beat the foolhardy tankman cover!';
+				FlxG.save.data.beatFoolhardy = false;
+				trace('penis!');
+			case 3:
+				achievementDesc = 'SUS\nYOU FOUND THE AMOGUS EASTER EGG!';
+				FlxG.save.data.sus = true;
+			case 4:
+				achievementDesc = 'Getting Started\nBeat the tutorial';
+				FlxG.save.data.started = true;
+		}
+		if (!getHowItIsFromID(id))
+		{
+			var thing:FlxText = new FlxText(10, 10, 0, "Achievement Unlocked!\n" + achievementDesc, 18);
+			thing.scrollFactor.set();
+			thing.alpha = 0;
+			thing.text += "\n";
+			add(thing);
+			FlxTween.tween(thing, {alpha: 1}, 0.75, {onComplete: function(twn:FlxTween){
+				new FlxTimer().start(2, function(tmr:FlxTimer){
+					FlxTween.tween(thing, {alpha: 0}, 0.75, {onComplete: function(twn:FlxTween){
+						thing.kill();
+					}});
+				});
+			}});
+		}
+	}
+	function getHowItIsFromID(id:Int):Bool {
+		var penis:Bool = false;
+		switch (id)
+		{
+			case 0:
+				penis = FlxG.save.data.fridayAchievement;
+			case 1:
+				penis = FlxG.save.data.beatEveryWeekAchievement;
+			case 2:
+				penis = FlxG.save.data.beatFoolhardy;
+			case 3:
+				penis = FlxG.save.data.sus;
+			case 4:
+				penis = FlxG.save.data.started;
+		}
+		return penis;
 	}
 
 	private function updateCurStep():Void

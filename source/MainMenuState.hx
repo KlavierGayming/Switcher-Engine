@@ -46,6 +46,13 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+		var now = Date.now();
+		var day = now.getDay();
+		var hour = now.getHours();
+		if (day == 5 && hour >= 20)
+		{
+			unlockAchievement(0);
+		}
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
@@ -231,8 +238,6 @@ class MainMenuState extends MusicBeatState
 										trace("Freeplay Menu Selected");
 
 									case 'options':
-										FlxTransitionableState.skipNextTransIn = true;
-										FlxTransitionableState.skipNextTransOut = true;
 										FlxG.switchState(new OtherState());
 								}
 							});
@@ -273,5 +278,6 @@ class MainMenuState extends MusicBeatState
 
 			spr.updateHitbox();
 		});
+
 	}
 }

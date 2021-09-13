@@ -95,15 +95,6 @@ class Paths
 		return 'songs:assets/songs/${song.toLowerCase()}/Voices.$SOUND_EXT';
 	}
 
-	inline static public function instneo(song:String)
-	{
-		return 'songsneo:assets/songsneo/${song.toLowerCase()}/Inst.$SOUND_EXT';
-	}
-	inline static public function voicesneo(song:String)
-	{
-		return 'songsneo:assets/songsneo/${song.toLowerCase()}/Voices.$SOUND_EXT';
-	}
-	
 	inline static public function modChart(key:String, song:String) {
 		return 'assets/data/' + song.toLowerCase() + '/' + key + '.txt';
 	}

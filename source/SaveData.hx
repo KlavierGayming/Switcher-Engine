@@ -18,9 +18,25 @@ class SaveData {
 
     if (FlxG.save.data.bfThing == null)
         FlxG.save.data.bfThing = 'bf';
-    }
-    function returnABoolArray():Array<Bool> {
-        var bool:Array<Bool> = [FlxG.save.data.songposbar, FlxG.save.data.emptyness, FlxG.save.data.isnogf, FlxG.save.data.ispractice, FlxG.save.data.isnocut];
-        return bool;
+    trace('penis!\n' + FlxG.save.data.fridayAchievement + '\n' + FlxG.save.data.beatEveryWeekAchievement + '\n' + FlxG.save.data.beatFoolhardy + '\n' + FlxG.save.data.sus + '\n' + FlxG.save.data.started);
+        if (FlxG.save.data.beatEveryWeekAchievement == null)
+        {
+				FlxG.save.data.fridayAchievement = false;
+				FlxG.save.data.beatEveryWeekAchievement = false;
+				FlxG.save.data.beatFoolhardy = false;
+				FlxG.save.data.sus = false;
+				FlxG.save.data.started = false;
+        }
+        if (FlxG.save.data.beatWeek0 == null)
+        {
+                FlxG.save.data.beatWeek0 = false;
+                FlxG.save.data.beatWeek1 = false;
+                FlxG.save.data.beatWeek2 = false;
+                FlxG.save.data.beatWeek3 = false;
+                FlxG.save.data.beatWeek4 = false;
+                FlxG.save.data.beatWeek5 = false;
+                FlxG.save.data.beatWeek6 = false;
+                FlxG.save.data.beatWeek7 = false;
+        }
     }
 }

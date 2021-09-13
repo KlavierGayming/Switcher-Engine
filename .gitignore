@@ -1,3 +1,5 @@
 export/
 .vscode/
 a/
+source/GJKeys.hx
+tools/

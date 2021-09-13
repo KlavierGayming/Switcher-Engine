@@ -54,17 +54,17 @@ class AboutState extends MusicBeatState
 		funnyIcons.setGraphicSize(Std.int(funnyIcons.width * 1.25));
 		add(funnyIcons);
 
-		if (FlxG.random.bool(10) || FlxG.keys.pressed.P)
+		if (FlxG.random.bool(10)#if debug || FlxG.keys.pressed.P #end)
 		{
 			var video = new VideoPlayer(0, 0,'videos/amogus.webm');
 			video.finishCallback = () -> {
 				System.exit(0);
 			}
 			video.setGraphicSize(Std.int(video.width * 2));
-			video.ownCamera();
 			video.updateHitbox();
 			add(video);
 			video.play();
+			unlockAchievement(3);
 		}
 
 		
@@ -88,13 +88,13 @@ class AboutState extends MusicBeatState
 
 		if (controls.ACCEPT || controls.BACK)
 		{
-			FlxG.switchState(new OptionsMenu());
+			FlxG.switchState(new OtherState());
 		}
 
 		#if android
 		if (FlxG.android.justReleased.BACK)
 		{
-			FlxG.switchState(new OptionsMenu());
+			FlxG.switchState(new OtherState());
 		}
         #end
 	}
@@ -107,7 +107,7 @@ class AboutState extends MusicBeatState
 			if (nextFunnyIcon < 1)
 				nextFunnyIcon = 7;
 			funnyIcons.animation.play('icon' + Std.string(nextFunnyIcon), false);
-			if (FlxG.random.bool(20) || FlxG.keys.justPressed.H)
+			if (FlxG.random.bool(20)#if debug || FlxG.keys.justPressed.H #end)
 				FlxG.sound.play(Paths.sound('vineboom','shared'));
 			tmr.reset(1);
 		});
