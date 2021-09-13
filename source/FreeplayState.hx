@@ -36,6 +36,8 @@ class FreeplayState extends MusicBeatState
 	var isNeo:Bool = new Config().getneo();
 	var icon:HealthIcon;
 
+	var bg:FlxSprite;
+
 
 
 	private var iconArray:Array<HealthIcon> = [];
@@ -102,7 +104,7 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.scrollFactor.set();
 		add(bg);
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -416,6 +418,38 @@ class FreeplayState extends MusicBeatState
 		FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
 		#end
 		#end
+		var oldBgCol = bg.color;
+		var newBgCol = bg.color;
+		switch (songs[curSelected].songName.toLowerCase())
+		{
+			case 'tutorial':
+				newBgCol = FlxColor.fromRGB(245, 66, 152);
+			case 'bopeebo' | 'fresh' | 'dadbattle':
+				newBgCol = FlxColor.fromRGB(174, 90, 191);
+			case 'spookeez' | 'south':
+				newBgCol = FlxColor.fromRGB(255, 165, 31);
+			case 'monster':
+				newBgCol = FlxColor.fromRGB(224, 2, 2);
+			case 'pico' | 'philly' | 'blammed':
+				newBgCol = FlxColor.fromRGB(2, 224, 39);
+			case 'satin-panties' | 'high' | 'milf':
+				newBgCol = FlxColor.fromRGB(245, 66, 155);
+			case 'cocoa' | 'eggnog':
+				newBgCol = FlxColor.fromRGB(255, 184, 184);
+			case 'winter-horrorland':
+				newBgCol = FlxColor.fromRGB(224, 2, 2);
+			case 'senpai' | 'roses':
+				newBgCol = FlxColor.fromRGB(255, 184, 248);
+			case 'thorns':
+				newBgCol = FlxColor.fromRGB(255, 0, 81);
+			case 'ugh' | 'guns' | 'stress':
+				newBgCol = FlxColor.fromRGB(255, 204, 0);
+			case 'foolhardy':
+				newBgCol = FlxColor.fromRGB(125, 60, 0);
+		}
+
+		FlxTween.color(bg, 0.5, oldBgCol, newBgCol);
+
 
 		var bullShit:Int = 0;
 
@@ -443,14 +477,6 @@ class FreeplayState extends MusicBeatState
 		var penis = grpSongs.members[curSelected];
 		FlxG.camera.follow(penis, LOCKON, 0.05);
 		icon.animation.play(songs[curSelected].songCharacter);
-	}
-	override function beatHit() {
-		try {
-			character.dance();
-		}
-		catch(e) {
-			trace(e.message);
-		}
 	}
 }
 

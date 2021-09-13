@@ -117,7 +117,25 @@ class MusicBeatState extends FlxUIState
 					}});
 				});
 			}});
+			GameJolt.GameJoltAPI.getTrophy(getTrophyID(id));
 		}
+	}
+	function getTrophyID(id:Int):Int
+	{	
+		var trophyID = 0;
+		switch (id) {
+			case 0:
+				trophyID = 148529;
+			case 1:
+				trophyID = 148530;
+			case 2:
+				trophyID = 148531;
+			case 3:
+				trophyID = 148533;
+			case 4:
+				trophyID = 148532;
+		}
+		return trophyID;
 	}
 	function getHowItIsFromID(id:Int):Bool {
 		var penis:Bool = false;

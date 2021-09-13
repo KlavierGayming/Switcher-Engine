@@ -2566,6 +2566,10 @@ class PlayState extends MusicBeatState
 
 		if (isStoryMode)
 		{
+			if (SONG.song.toLowerCase() == 'tutorial')
+			{
+				unlockAchievement(4);
+			}
 			campaignScore += songScore;
 
 			storyPlaylist.remove(storyPlaylist[0]);

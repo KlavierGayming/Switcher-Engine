@@ -31,7 +31,9 @@ class AchievementsState extends MusicBeatState {
         penisText = new FlxText(0, FlxG.height - 20, 0, (!getHowItIsFromID(curSelected) ? "Locked" : achievementDescriptions[0]), 16);
         add(penisText);
         changeThing();
-
+        #if mobileC
+        addVirtualPad(UP_DOWN, A_B);
+        #end
         super.create();
     }
 
@@ -76,7 +78,7 @@ class AchievementsState extends MusicBeatState {
             changeThing(1);
         }
 
-        if (controls.BACK)
+        if (controls.BACK || controls.ACCEPT)
         {
             FlxG.switchState(new OtherState());
         }
