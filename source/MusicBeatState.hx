@@ -13,6 +13,7 @@ import ui.FlxVirtualPad;
 #end
 import flixel.text.FlxText;
 import flixel.FlxSprite;
+import flixel.*;
 
 class MusicBeatState extends FlxUIState
 {
@@ -94,7 +95,7 @@ class MusicBeatState extends FlxUIState
 				FlxG.save.data.beatEveryWeekAchievement = true;
 			case 2:
 				achievementDesc = 'Tankhardy\nYou beat the foolhardy tankman cover!';
-				FlxG.save.data.beatFoolhardy = false;
+				FlxG.save.data.beatFoolhardy = true;
 				trace('penis!');
 			case 3:
 				achievementDesc = 'SUS\nYOU FOUND THE AMOGUS EASTER EGG!';
@@ -105,20 +106,25 @@ class MusicBeatState extends FlxUIState
 		}
 		if (!getHowItIsFromID(id))
 		{
+			var achievementCam:FlxCamera = new FlxCamera();
+			achievementCam.bgColor.alpha = 0;
+			add(achievementCam);
 			var thing:FlxText = new FlxText(10, 10, 0, "Achievement Unlocked!\n" + achievementDesc, 18);
 			thing.scrollFactor.set();
 			thing.alpha = 0;
 			thing.text += "\n";
+			thing.cameras = [achievementCam];
 			add(thing);
 			FlxTween.tween(thing, {alpha: 1}, 0.75, {onComplete: function(twn:FlxTween){
 				new FlxTimer().start(2, function(tmr:FlxTimer){
 					FlxTween.tween(thing, {alpha: 0}, 0.75, {onComplete: function(twn:FlxTween){
 						thing.kill();
+						achievementCam.kill();
 					}});
 				});
 			}});
-			GameJolt.GameJoltAPI.getTrophy(getTrophyID(id));
 		}
+		GameJolt.GameJoltAPI.getTrophy(getTrophyID(id));
 	}
 	function getTrophyID(id:Int):Int
 	{	

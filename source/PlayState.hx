@@ -2566,10 +2566,6 @@ class PlayState extends MusicBeatState
 
 		if (isStoryMode)
 		{
-			if (SONG.song.toLowerCase() == 'tutorial')
-			{
-				unlockAchievement(4);
-			}
 			campaignScore += songScore;
 
 			storyPlaylist.remove(storyPlaylist[0]);
@@ -2582,7 +2578,42 @@ class PlayState extends MusicBeatState
 				transOut = FlxTransitionableState.defaultTransOut;
 
 				//if (FlxG.save.data.noend) delayed :((((
-					FlxG.switchState(new StoryMenuState());
+
+					switch (storyWeek)
+					{
+						case 0:
+							FlxG.save.data.beatWeek0 = true;
+						case 1:
+							FlxG.save.data.beatWeek1 = true;
+						case 2:
+							FlxG.save.data.beatWeek2 = true;
+						case 3:
+							FlxG.save.data.beatWeek3 = true;
+						case 4:
+							FlxG.save.data.beatWeek4 = true;
+						case 5:
+							FlxG.save.data.beatWeek5 = true;
+						case 6:
+							FlxG.save.data.beatWeek6 = true;
+						case 7:
+							FlxG.save.data.beatWeek7 = true;
+					}
+					if (FlxG.save.data.beatWeek0 && FlxG.save.data.beatWeek1 && FlxG.save.data.beatWeek2 && FlxG.save.data.beatWeek3 && FlxG.save.data.beatWeek4 && FlxG.save.data.beatWeek5 && FlxG.save.data.beatWeek6 && FlxG.save.data.beatWeek7)
+					{
+						unlockAchievement(1);
+						new FlxTimer().start(3, function(tmr:FlxTimer){
+							FlxG.switchState(new StoryMenuState());
+						});
+					}
+					else if (SONG.song.toLowerCase() == 'tutorial')
+					{
+						unlockAchievement(4);
+						new FlxTimer().start(3, function(tmr:FlxTimer){
+							FlxG.switchState(new StoryMenuState());
+						});
+					}
+					else
+						FlxG.switchState(new StoryMenuState());
 				//else
 				//	openSubState(new EndSongSubstate());
 
@@ -2598,29 +2629,7 @@ class PlayState extends MusicBeatState
 					#end
 					Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
 				}
-				switch (storyWeek)
-				{
-					case 0:
-						FlxG.save.data.beatWeek0 = true;
-					case 1:
-						FlxG.save.data.beatWeek1 = true;
-					case 2:
-						FlxG.save.data.beatWeek2 = true;
-					case 3:
-						FlxG.save.data.beatWeek3 = true;
-					case 4:
-						FlxG.save.data.beatWeek4 = true;
-					case 5:
-						FlxG.save.data.beatWeek5 = true;
-					case 6:
-						FlxG.save.data.beatWeek6 = true;
-					case 7:
-						FlxG.save.data.beatWeek7 = true;
-				}
-				if (FlxG.save.data.beatWeek0 && FlxG.save.data.beatWeek1 && FlxG.save.data.beatWeek2 && FlxG.save.data.beatWeek3 && FlxG.save.data.beatWeek4 && FlxG.save.data.beatWeek5 && FlxG.save.data.beatWeek6 && FlxG.save.data.beatWeek7)
-				{
-					unlockAchievement(1);
-				}
+
 
 				FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
 				FlxG.save.flush();
@@ -2667,8 +2676,14 @@ class PlayState extends MusicBeatState
 		{
 			trace('WENT BACK TO FREEPLAY??');
 			if (SONG.song.toLowerCase() == 'foolhardy')
+			{
 				unlockAchievement(2);
-			FlxG.switchState(new FreeplayState());
+				new FlxTimer().start(3, function(tmr:FlxTimer){
+					FlxG.switchState(new FreeplayState());
+				});
+			}
+			else
+				FlxG.switchState(new FreeplayState());
 			deathCount = 0;
 		}
 	}

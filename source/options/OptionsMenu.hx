@@ -135,13 +135,13 @@ class OptionsMenu extends MusicBeatState
 			{
 				case "credits":
 					#if mobileC
-					FlxG.switchState(new options.CreditsState());
+					FlxG.switchState(new options.CustomControlsState());
 					#else
 					openSubState(new KeyBindMenu());
 					#end
 				case "controls":
 					#if mobileC
-					FlxG.switchState(new options.CreditsState());
+					FlxG.switchState(new options.CustomControlsState());
 					#else
 					openSubState(new KeyBindMenu());
 					#end
