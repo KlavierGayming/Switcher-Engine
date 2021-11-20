@@ -218,7 +218,7 @@ class PlayState extends MusicBeatState
 		try{
 			modchart = sys.io.File.getContent(Asset2File.getPath(mc, '.txt'));
 			modcharting = true;
-			trace('modchart found fart poopoo (at ' + mc + ')');
+			trace('modchart found fart poopoo (at ' + Asset2File.getPath(mc, '.txt') + ')');
 		}
 		catch(e)
 		{

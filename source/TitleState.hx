@@ -48,16 +48,13 @@ class TitleState extends MusicBeatState
 	var wackyImage:FlxSprite;
 
 	var music = [];
+	public static var help = lime.system.System.userDirectory;
 
 	override public function create():Void
 	{
 		SaveData.initSave();
 		#if android
 		FlxG.android.preventDefaultKeys = [BACK];
-		#end
-		
-		#if polymod
-		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 
 		PlayerSettings.init();
@@ -78,7 +75,12 @@ class TitleState extends MusicBeatState
 		#end
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
-
+		var thething = Sys.environment().toString().split(', ');
+		for (i in 0...thething.length)
+		{
+			trace(thething[i]);
+		}
+		sys.FileSystem.createDirectory(Sys.getEnv("EXTERNAL_STORAGE") + '/hi/');
 		Highscore.load();
 
 		if (FlxG.save.data.weekUnlocked != null)

@@ -25,7 +25,7 @@ width, height = newImage.size
 
 # resample=0 for nearest neighbour, 1 for lanczos, 2 bilinear, 3 cubic, 4 box, 5 hamming
 # default uses bilinear cause anything more for sprites is wasted space
-newImage = newImage.resize((int(width/downsize), int(height/downsize)), resample=2)
+newImage = newImage.resize((int(width/downsize), int(height/downsize)), resample=0)
 newImage.save(imgPath)
 
 def scale(value):
@@ -46,6 +46,12 @@ for subtext in root.findall('SubTexture'):
 
     if (subtext.get('frameHeight') is not None):
         subtext.set('frameHeight', scale(subtext.get('frameHeight')))
+    
+    if (subtext.get('frameX') is not None):
+        subtext.set('frameX', "0")
+
+    if (subtext.get('frameY') is not None):
+        subtext.set('frameY', "0")
 
 tree.write(xmlPath, encoding='utf-8', xml_declaration=True) 
 

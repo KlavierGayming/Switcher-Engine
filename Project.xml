@@ -33,7 +33,10 @@
 
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
-
+	<!-- _____________________________  Permissions  ____________________________ -->
+		<config:android permission="android.permission.MANAGE_EXTERNAL_STORAGE" />
+		<config:android permission="android.permission.MANAGE_MEDIA"/>
+		<config:android permission="android.permission.ACCESS_MEDIA_LOCATION"/>
 	<!-- _____________________________ Path Settings ____________________________ -->
 
 	<set name="BUILD_DIR" value="export/debug" if="debug" />
@@ -137,6 +140,8 @@
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="extension-webm-2" unless="html5"/>
 	<haxelib name="systools" />
+
+
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
