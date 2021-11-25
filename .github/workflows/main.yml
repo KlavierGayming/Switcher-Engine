@@ -28,7 +28,7 @@ jobs:
           key: ${{ runner.os }}
           
       - name: Setup Windows SDK
-          run: | 
+        run: |
             sdksetup.exe /features OptionId.WindowsDesktopSoftwareDevelopmentKit OptionId.NetFxSoftwareDevelopmentKit /quiet 
                 
       - name: Setup C++ Compiling Tools
