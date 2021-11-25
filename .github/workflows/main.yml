@@ -31,7 +31,6 @@ jobs:
         run: |
             sdksetup.exe /features OptionId.WindowsDesktopSoftwareDevelopmentKit OptionId.NetFxSoftwareDevelopmentKit /quiet 
                 
-      - name: Setup C++ Compiling Tools
           
 
       # Runs a set of commands using the runners shell
