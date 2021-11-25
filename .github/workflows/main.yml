@@ -54,6 +54,7 @@ jobs:
           
       - name: Build Log
         run: |
+          haxelib run lime rebuild extension-webm-2 windows
           haxelib run lime build windows -Dci
           
       - uses: actions/upload-artifact@v2
