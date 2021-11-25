@@ -28,8 +28,7 @@ jobs:
           key: ${{ runner.os }}
           
       - name: Setup Windows SDK
-        run: |
-            sdksetup.exe /features OptionId.WindowsDesktopSoftwareDevelopmentKit OptionId.NetFxSoftwareDevelopmentKit /quiet 
+        uses: GuillaumeFalourd/setup-windows10-sdk-action@v1
                 
           
 
