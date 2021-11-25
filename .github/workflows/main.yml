@@ -49,6 +49,7 @@ jobs:
           haxelib git linc_luajit https://github.com/Daninnocent/linc_luajit.git --quiet
           haxelib install actuate 
           haxelib install newgrounds
+          haxelib install systools
           haxelib list
           
       - name: Build Log
